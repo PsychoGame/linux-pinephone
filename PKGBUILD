@@ -6,12 +6,12 @@ buildarch=8
 _ver=5.3
 
 pkgbase=linux-pinephone
-_commit=24aefcb0e03a0637c2da2469ad7b2eef66f94a20
+_commit=59d7c1893540d73581cf5679d5dc79cf84668606
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=1.7
+pkgrel=1.8
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -21,16 +21,58 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'config'
         'linux.preset'
         '60-linux.hook'
-        '90-linux.hook')
-md5sums=('bfeb788186ec05ac7a4f6375f6b08d2b'
-         '51d676ab8b3be00e527d4b807820638c'
+        '90-linux.hook'
+        '0001-bootsplash.patch'
+        '0002-bootsplash.patch'
+        '0003-bootsplash.patch'
+        '0004-bootsplash.patch'
+        '0005-bootsplash.patch'
+        '0006-bootsplash.patch'
+        '0007-bootsplash.patch'
+        '0008-bootsplash.patch'
+        '0009-bootsplash.patch'
+        '0010-bootsplash.patch'
+        '0011-bootsplash.patch'
+        '0012-bootsplash.patch'
+        '0013-bootsplash.patch')
+md5sums=('545d62d920ddd438e00e599f3feb6c96'
+         '0e87771cbfae9dbe46a1f94b31d56b8c'
          'c9e029953b89608d1844da1ec88c536b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '3dc88030a8f2f5a5f97266d99b149f77')
+         '3dc88030a8f2f5a5f97266d99b149f77'
+         'f13cfcd8a4667ecca68bccefee4b8283'
+         'b4acd66a564af83b5409738c40b4a566'
+         'a6407dceae1838f5aa27450401a91be6'
+         'cb78b1c11b917a4d31c4b1567183b76f'
+         '3efea575da7f02ba94789d3b6b81e11f'
+         '2529ad13791b259d80c9d5d702187a65'
+         'efd2367798cc4eab0e15fc0ae44fb003'
+         '50255aac36e002afa477e4527a0550af'
+         '6b6def41b404422dc04b39e2f1adffc8'
+         '1922e3a7727d2bf51641b98d6d354738'
+         'd6b7e4e43e42128cf950251e0d0aee23'
+         'ecfd8a30c480149005fcf349e4d06f4b'
+         '2ead9aa2df230c83539e3ebf6b796b18')
 
 prepare() {
 sed -i s/'EXTRAVERSION = -rc4'/'EXTRAVERSION ='/ "${_srcname}"/Makefile
   cd "${srcdir}/${_srcname}"
+  
+  # Manjaro-ARM patches
+  # Bootsplash patches
+  patch -Np1 -i "${srcdir}/0001-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0002-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0003-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0004-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0005-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0006-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0007-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0008-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0009-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0010-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0011-bootsplash.patch"
+  patch -Np1 -i "${srcdir}/0012-bootsplash.patch"
+  git apply -p1 < "${srcdir}/0013-bootsplash.patch"
 
   cat "${srcdir}/config" > ./.config
 
