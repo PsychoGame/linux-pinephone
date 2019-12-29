@@ -3,15 +3,15 @@
 
 buildarch=8
 
-_ver=5.3
+_ver=5.4.0
 
 pkgbase=linux-pinephone
-_commit=59d7c1893540d73581cf5679d5dc79cf84668606
+_commit=bbcb007bba2c10fa42d1c323585358c3b284bc52
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=1.8
+pkgrel=0.1
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -35,9 +35,9 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0011-bootsplash.patch'
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
-md5sums=('545d62d920ddd438e00e599f3feb6c96'
-         '0e87771cbfae9dbe46a1f94b31d56b8c'
-         'c9e029953b89608d1844da1ec88c536b'
+md5sums=('ab809990a224b8af82bb97821cd6b91a'
+         'e6e7767e4b925a7d0b3be41c79697947'
+         '9f809a4f9eebed2d809b7448448ed386'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77'
          'f13cfcd8a4667ecca68bccefee4b8283'
@@ -55,7 +55,6 @@ md5sums=('545d62d920ddd438e00e599f3feb6c96'
          '2ead9aa2df230c83539e3ebf6b796b18')
 
 prepare() {
-sed -i s/'EXTRAVERSION = -rc4'/'EXTRAVERSION ='/ "${_srcname}"/Makefile
   cd "${srcdir}/${_srcname}"
   
   # Manjaro-ARM patches
@@ -96,7 +95,7 @@ build() {
   #make xconfig # X-based configuration
   #make oldconfig # using old config from previous kernel version
   # ... or manually edit .config
-  #make pinephone_defconfig
+  #make pine64_defconfig
 
   # Copy back our configuration (use with new kernel version)
   #cp ./.config /var/tmp/${pkgbase}.config
