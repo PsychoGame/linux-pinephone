@@ -11,7 +11,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=0.1
+pkgrel=0.2
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -36,7 +36,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
 md5sums=('ab809990a224b8af82bb97821cd6b91a'
-         'e6e7767e4b925a7d0b3be41c79697947'
+         '0042af63803c96bedc010c8748c59b23'
          '9f809a4f9eebed2d809b7448448ed386'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77'
@@ -71,7 +71,7 @@ prepare() {
   patch -Np1 -i "${srcdir}/0010-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0011-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0012-bootsplash.patch"
-  git apply -p1 < "${srcdir}/0013-bootsplash.patch"
+  #git apply -p1 < "${srcdir}/0013-bootsplash.patch"
 
   cat "${srcdir}/config" > ./.config
 
