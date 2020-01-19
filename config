@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 5.4.0-0.2 Kernel Configuration
+# Linux/arm64 5.4.0-0.3 Kernel Configuration
 #
 
 #
@@ -3550,6 +3550,7 @@ CONFIG_SND_SOC_DMIC=m
 # CONFIG_SND_SOC_ES8328_I2C is not set
 # CONFIG_SND_SOC_ES8328_SPI is not set
 # CONFIG_SND_SOC_GTM601 is not set
+CONFIG_SND_SOC_EC25=m
 # CONFIG_SND_SOC_INNO_RK3036 is not set
 # CONFIG_SND_SOC_MAX98088 is not set
 # CONFIG_SND_SOC_MAX98357A is not set
