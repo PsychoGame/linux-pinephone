@@ -6,12 +6,12 @@ buildarch=8
 _ver=5.4.0
 
 pkgbase=linux-pinephone
-_commit=235a349bf2347758cf55153170ee40a62d888229
+_commit=d90727013d9149a83e3fd6dd7b2321162639cb51
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=0.3
+pkgrel=0.4
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -34,9 +34,10 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch'
-        '0013-bootsplash.patch')
-md5sums=('e0123697d295f935e4f9eb664614213a'
-         '28ff82d750e5a0d78e9517f2c84153e4'
+        '0013-bootsplash.patch'
+        'add-pinephone-front-camera.patch')
+md5sums=('f01ab8a3ebb26343b4251fdbaf9e4fe2'
+         '1b5dd4c2bb5e9191e880a1d37b711dcf'
          '9f809a4f9eebed2d809b7448448ed386'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77'
@@ -52,12 +53,14 @@ md5sums=('e0123697d295f935e4f9eb664614213a'
          '1922e3a7727d2bf51641b98d6d354738'
          'd6b7e4e43e42128cf950251e0d0aee23'
          'ecfd8a30c480149005fcf349e4d06f4b'
-         '2ead9aa2df230c83539e3ebf6b796b18')
+         '2ead9aa2df230c83539e3ebf6b796b18'
+         '2375d24a05b4dbec551ad1a61866c5b2')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
   
   # Manjaro-ARM patches
+  patch -Np1 -i "${srcdir}/add-pinephone-front-camera.patch"
   # Bootsplash patches
   patch -Np1 -i "${srcdir}/0001-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0002-bootsplash.patch"
@@ -71,7 +74,6 @@ prepare() {
   patch -Np1 -i "${srcdir}/0010-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0011-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0012-bootsplash.patch"
-  #git apply -p1 < "${srcdir}/0013-bootsplash.patch"
 
   cat "${srcdir}/config" > ./.config
 
