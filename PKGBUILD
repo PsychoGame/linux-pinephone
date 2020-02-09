@@ -11,7 +11,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=0.4
+pkgrel=0.5
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -37,7 +37,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0013-bootsplash.patch'
         'add-pinephone-front-camera.patch')
 md5sums=('f01ab8a3ebb26343b4251fdbaf9e4fe2'
-         '1b5dd4c2bb5e9191e880a1d37b711dcf'
+         '13a197273a73ae6ad2e6bd47df88c8d8'
          '9f809a4f9eebed2d809b7448448ed386'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77'
