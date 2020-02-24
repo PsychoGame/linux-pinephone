@@ -36,7 +36,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
 md5sums=('389803622527ff13632f90ba4ff12145'
-         '55953d62b165a441de818b4c3d31a571'
+         '6f28dcf91f84cfd0851058089b6a5049'
          '9f809a4f9eebed2d809b7448448ed386'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77'
