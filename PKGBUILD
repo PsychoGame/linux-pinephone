@@ -6,12 +6,12 @@ buildarch=8
 _ver=5.5.0
 
 pkgbase=linux-pinephone
-_commit=c8c2798dbf0d307d28999dfa37e68455ad8aef1a
+_commit=fa47a4a3ec04ea93634dc8485c5343732e3caae7
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=5
+pkgrel=6
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -35,8 +35,8 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0011-bootsplash.patch'
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
-md5sums=('760359a75de24a57122ea4ed8eb0096a'
-         '098d61f5ad87d68eb6adbeb64a4f798f'
+md5sums=('0d09b2a6a07054bb3e9bc3c2c2425fbb'
+         '19703980985916ad3e14aa9e8e413b3a'
          '9f809a4f9eebed2d809b7448448ed386'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77'
