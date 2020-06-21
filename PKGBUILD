@@ -1,17 +1,15 @@
 # AArch64 PinePhone/PineTab specific kernel
 # Maintainer: Dan Johansen <strit@manjaro.org>
 
-buildarch=8
-
-_ver=5.5.0
+_ver=5.7.0
 
 pkgbase=linux-pinephone
-_commit=fa47a4a3ec04ea93634dc8485c5343732e3caae7
+_commit=a0b8e9f530823f4ceeb75a71a078372bc376ca8a
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=6
+pkgrel=1
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -35,8 +33,8 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0011-bootsplash.patch'
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
-md5sums=('0d09b2a6a07054bb3e9bc3c2c2425fbb'
-         '19703980985916ad3e14aa9e8e413b3a'
+md5sums=('771425e6d0c108ed7873019d1b2ba657'
+         '123512254db7e87104994bc72b393c5a'
          '9f809a4f9eebed2d809b7448448ed386'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77'
