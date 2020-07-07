@@ -84,11 +84,11 @@ build() {
   cd "${srcdir}/${_srcname}"
 
   # get kernel version
-  #make prepare
+  make prepare
 
   # load configuration
   # Configure the kernel. Replace the line below with one of your choice.
-  make menuconfig # CLI menu for configuration
+  #make menuconfig # CLI menu for configuration
   #make nconfig # new CLI menu for configuration
   #make xconfig # X-based configuration
   #make oldconfig # using old config from previous kernel version
@@ -96,13 +96,13 @@ build() {
   #make pine64_defconfig
 
   # Copy back our configuration (use with new kernel version)
-  cp ./.config /var/tmp/${pkgbase}.config
+  #cp ./.config /var/tmp/${pkgbase}.config
 
   ####################
   # stop here
   # this is useful to configure the kernel
-  msg "Stopping build"
-  return 1
+  #msg "Stopping build"
+  #return 1
   ####################
 
   #yes "" | make config
