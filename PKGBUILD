@@ -4,7 +4,7 @@
 _ver=5.7.0
 
 pkgbase=linux-pinephone
-_commit=c3e42484fd1be12ef573bc77f91626ccb7efd1ad
+_commit=c906a7d36abaa9ca379015c275b85af5d5b01987
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
@@ -33,8 +33,8 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0011-bootsplash.patch'
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
-md5sums=('7ae4286c072557903c1435dcdfeaa091'
-         '3d584a82a554256d36ed3b0b990be176'
+md5sums=('b04dec282f712ec29369b59017be5d79'
+         'e8a1c028d0a71fb414beb94a8ae1a9cc'
          '9f809a4f9eebed2d809b7448448ed386'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77'
