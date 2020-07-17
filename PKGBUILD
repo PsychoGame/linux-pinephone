@@ -35,7 +35,6 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0012-bootsplash.patch'
         '0013-bootsplash.patch'
         'wifi-power-saving.patch'
-        'Revert-ASoc-sun4i-i2s-Add-20-and-24-bit-support.patch'
         'panic-led.patch'
         'meta-jack-detection-patch.patch'
         '1280x720-hardcode.patch')
@@ -58,7 +57,6 @@ sha256sums=('7109504e4978b26a64642579c8afa0bdaa39c5a1d561654ca5c6169b2962a3ef'
             '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
-            '31260ff3b8a312469b6c401abba37baf15bd9b69507bb9795a9323536bf9e807'
             '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
             '9d9900d5c5a89c605a80e0ffff9889cde0af758b4ddf15ff266b73765332768d'
             '2b8c029c6a86b9d750a9de2efb2c56536c056b93619677f45063a036e4df1d6a')
@@ -75,8 +73,7 @@ prepare() {
   # kernel panic led
   patch -p1 -N < ../panic-led.patch
 
-  # camera & audio stuffs
-  patch -p1 -N < ../Revert-ASoc-sun4i-i2s-Add-20-and-24-bit-support.patch
+  # camera
   patch -p1 -N < ../1280x720-hardcode.patch
   
   # Manjaro-ARM patches
