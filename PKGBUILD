@@ -10,7 +10,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=8
+pkgrel=9
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -40,7 +40,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'meta-jack-detection-patch.patch'
         '1280x720-hardcode.patch')
 sha256sums=('7109504e4978b26a64642579c8afa0bdaa39c5a1d561654ca5c6169b2962a3ef'
-            '13d3bb7d4dd9ed7e1e48596e51ff79f7a8356d49ad8a356432c712f29ada514e'
+            '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
@@ -65,6 +65,19 @@ sha256sums=('7109504e4978b26a64642579c8afa0bdaa39c5a1d561654ca5c6169b2962a3ef'
 
 prepare() {
   cd "${srcdir}/${_srcname}"
+
+  # disable power saving for now, wi-fi went out randomly
+  patch -p1 -N < ../wifi-power-saving.patch
+
+  # jack detection for 5.7
+  patch -p1 -N < ../meta-jack-detection-patch.patch
+
+  # kernel panic led
+  patch -p1 -N < ../panic-led.patch
+
+  # camera & audio stuffs
+  patch -p1 -N < ../Revert-ASoc-sun4i-i2s-Add-20-and-24-bit-support.patch
+  patch -p1 -N < ../1280x720-hardcode.patch
   
   # Manjaro-ARM patches
  # patch -Np1 -i "${srcdir}/add-pinephone-front-camera.patch"
