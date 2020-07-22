@@ -10,7 +10,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=10.1
+pkgrel=10.2
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -83,7 +83,7 @@ prepare() {
   patch -p1 -N < ../1280x720-hardcode.patch
 
   # hdmi
-#  patch -p1 -N < ../hdmi-out.patch
+  patch -p1 -N < ../hdmi-out.patch
 #  patch -p1 -N < ../hdmi-audio.patch
 
   # battery
