@@ -2,7 +2,7 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-_ver=5.7.0
+_ver=5.7.10
 
 pkgbase=linux-pinephone
 _commit=c906a7d36abaa9ca379015c275b85af5d5b01987
@@ -10,13 +10,14 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=10.2
+pkgrel=1
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commit}.tar.gz"
+        "https://www.kernel.org/pub/linux/kernel/v5.x/patch-${_ver}.xz"
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -42,6 +43,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'hdmi-out.patch'
         'power15w.patch')
 sha256sums=('7109504e4978b26a64642579c8afa0bdaa39c5a1d561654ca5c6169b2962a3ef'
+            'a1335923da87515046aefd623290a4554321dff6bd9ac8fd637d1140958a1f47'
             '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -70,6 +72,9 @@ sha256sums=('7109504e4978b26a64642579c8afa0bdaa39c5a1d561654ca5c6169b2962a3ef'
 prepare() {
   cd "${srcdir}/${_srcname}"
 
+  # add upstream patch
+  patch -p1 -N < ../patch-"${pkgver}"
+
   # disable power saving for now, wi-fi went out randomly
   patch -p1 -N < ../wifi-power-saving.patch
 
@@ -84,7 +89,7 @@ prepare() {
 
   # hdmi
   patch -p1 -N < ../hdmi-out.patch
-#  patch -p1 -N < ../hdmi-audio.patch
+  patch -p1 -N < ../hdmi-audio.patch
 
   # battery
   patch -p1 -N < ../power15w.patch
