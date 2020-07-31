@@ -5,12 +5,12 @@
 _ver=5.7.0
 
 pkgbase=linux-pinephone
-_commit=c906a7d36abaa9ca379015c275b85af5d5b01987
+_commit=b39efcd149b7ea992d235062bf6f6f18c9b8f398
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=10
+pkgrel=11
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -41,7 +41,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'hdmi-audio.patch'
         'hdmi-out.patch'
         'power15w.patch')
-sha256sums=('7109504e4978b26a64642579c8afa0bdaa39c5a1d561654ca5c6169b2962a3ef'
+sha256sums=('f056b1952fdbd3b1973044b0a56456a12993466481569010f7949bd4e91a9428'
             '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
