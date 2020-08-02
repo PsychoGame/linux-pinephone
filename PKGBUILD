@@ -10,7 +10,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=11
+pkgrel=12
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -40,7 +40,9 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '1280x720-hardcode.patch'
         'hdmi-audio.patch'
         'hdmi-out.patch'
-        'power15w.patch')
+        'power15w.patch'
+        'bluetooth-correct-HCI_UART_RESET_ON_INIT-flags.patch'
+        'bluetooth-only-unregister-when-registered.patch')
 sha256sums=('f056b1952fdbd3b1973044b0a56456a12993466481569010f7949bd4e91a9428'
             '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
@@ -65,7 +67,9 @@ sha256sums=('f056b1952fdbd3b1973044b0a56456a12993466481569010f7949bd4e91a9428'
             '2b8c029c6a86b9d750a9de2efb2c56536c056b93619677f45063a036e4df1d6a'
             '81609f6ffb7cd3e23a262b44eae035e12ac0ce0fc9505eff24d561ad53fefe3e'
             'd84dc3317c22901c3ea08d498f7d56159e8639ac3d87bc5cd744888592f66c05'
-            'd35e82eeec9454e4a1800cdaa20a6151fbbd08dd2547b7ab9c77677ab4324d21')
+            'd35e82eeec9454e4a1800cdaa20a6151fbbd08dd2547b7ab9c77677ab4324d21'
+            '2863b7588dfce13b27a5dd909b0c460f59ad5c157acf440fa315ec5c5e072eda'
+            '83e050a176c3bc6484616201129df1032885dec3b2ab682443487413e6955a03')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -88,6 +92,10 @@ prepare() {
 
   # battery
   patch -p1 -N < ../power15w.patch
+
+  # bluetooth
+  patch -p1 -N < ../bluetooth-correct-HCI_UART_RESET_ON_INIT-flags.patch
+  patch -p1 -N < ../bluetooth-only-unregister-when-registered.patch
   
   # Manjaro-ARM patches
  # patch -Np1 -i "${srcdir}/add-pinephone-front-camera.patch"

@@ -1,0 +1,32 @@
+From f6dfe633ad7ef7d005336e4a701ed23b8c9544a1 Mon Sep 17 00:00:00 2001
+From: Nicolas Boichat <drinkcat@chromium.org>
+Date: Tue, 21 Jul 2020 10:37:16 +0800
+Subject: [PATCH] Bluetooth: hci_serdev: Only unregister device if it was
+ registered
+
+We should not call hci_unregister_dev if the device was not
+successfully registered.
+
+Fixes: c34dc3bfa7642fd ("Bluetooth: hci_serdev: Introduce hci_uart_unregister_device()")
+Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+---
+ drivers/bluetooth/hci_serdev.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/bluetooth/hci_serdev.c b/drivers/bluetooth/hci_serdev.c
+index 4652896d4990..ad2f26cb2622 100644
+--- a/drivers/bluetooth/hci_serdev.c
++++ b/drivers/bluetooth/hci_serdev.c
+@@ -357,7 +357,8 @@ void hci_uart_unregister_device(struct hci_uart *hu)
+ 	struct hci_dev *hdev = hu->hdev;
+ 
+ 	clear_bit(HCI_UART_PROTO_READY, &hu->flags);
+-	hci_unregister_dev(hdev);
++	if (test_bit(HCI_UART_REGISTERED, &hu->flags))
++		hci_unregister_dev(hdev);
+ 	hci_free_dev(hdev);
+ 
+ 	cancel_work_sync(&hu->write_work);
+-- 
+GitLab
+

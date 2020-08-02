@@ -1,0 +1,31 @@
+From f80cbca089fe2b21f46574e1a0e72fe45d8c55d6 Mon Sep 17 00:00:00 2001
+From: Nicolas Boichat <drinkcat@chromium.org>
+Date: Tue, 21 Jul 2020 10:37:15 +0800
+Subject: [PATCH] Bluetooth: hci_h5: Set HCI_UART_RESET_ON_INIT to correct
+ flags
+
+HCI_UART_RESET_ON_INIT belongs in hdev_flags, not flags.
+
+Fixes: ce945552fde4a09 ("Bluetooth: hci_h5: Add support for serdev enumerated devices")
+Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+---
+ drivers/bluetooth/hci_h5.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/bluetooth/hci_h5.c b/drivers/bluetooth/hci_h5.c
+index 6dc2a3c759cf..1ccf1551f4fb 100644
+--- a/drivers/bluetooth/hci_h5.c
++++ b/drivers/bluetooth/hci_h5.c
+@@ -794,7 +794,7 @@ static int h5_serdev_probe(struct serdev_device *serdev)
+ 	if (!h5)
+ 		return -ENOMEM;
+ 
+-	set_bit(HCI_UART_RESET_ON_INIT, &h5->serdev_hu.flags);
++	set_bit(HCI_UART_RESET_ON_INIT, &h5->serdev_hu.hdev_flags);
+ 
+ 	h5->hu = &h5->serdev_hu;
+ 	h5->serdev_hu.serdev = serdev;
+-- 
+GitLab
+
