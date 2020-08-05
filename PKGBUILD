@@ -43,7 +43,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         #'hdmi-out.patch'
         #'power15w.patch')
 sha256sums=('04b6a7a6467661077c02138605c15da4eabcb8addd0b1088f66238b859a20d90'
-            'ad2eea3f60d328a29124ac78e9186220b648e8d8d49fbe36c0eddf7268cdc982'
+            '7fd8c5e0711355994a1af471cf2702921b42e3e5026362dd4aad39e7fc66c6d3'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
