@@ -125,7 +125,7 @@ build() {
   #make xconfig # X-based configuration
   #make oldconfig # using old config from previous kernel version
   # ... or manually edit .config
-  make pine64_defconfig
+  #make pine64_defconfig
 
   # Copy back our configuration (use with new kernel version)
   #cp ./.config /var/tmp/${pkgbase}.config
