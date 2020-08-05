@@ -81,11 +81,11 @@ prepare() {
   patch -p1 -N < ../1280x720-hardcode.patch
 
   # hdmi
-  patch -p1 -N < ../hdmi-out.patch
-  patch -p1 -N < ../hdmi-audio.patch
+#  patch -p1 -N < ../hdmi-out.patch
+#  patch -p1 -N < ../hdmi-audio.patch
 
   # battery
-  patch -p1 -N < ../power15w.patch
+#  patch -p1 -N < ../power15w.patch
   
   # Manjaro-ARM patches
  # patch -Np1 -i "${srcdir}/add-pinephone-front-camera.patch"
