@@ -2,18 +2,19 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-_ver=5.7.0
+_ver=5.6.0
 
-pkgbase=linux-pinephone
-_commit=2c5466501c8d3dfdb8f02ef37a442bcc55a09866
+pkgbase=linux56-pinephone
+_commit=14c4d9ddc15f60645bd262b315fc7d770a44a1c6
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=13
+pkgrel=1
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
+conflicts=('linux-pinephone')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commit}.tar.gz"
@@ -41,7 +42,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'hdmi-audio.patch'
         'hdmi-out.patch'
         'power15w.patch')
-sha256sums=('1b522c905d08d3b09fdc259461f7cf394b8416a69adc33ccb4f06e4f14400ec3'
+sha256sums=('04b6a7a6467661077c02138605c15da4eabcb8addd0b1088f66238b859a20d90'
             '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
