@@ -133,8 +133,8 @@ build() {
   ####################
   # stop here
   # this is useful to configure the kernel
-  #msg "Stopping build"
-  #return 1
+  msg "Stopping build"
+  return 1
   ####################
 
   #yes "" | make config
