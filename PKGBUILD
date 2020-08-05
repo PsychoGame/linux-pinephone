@@ -153,7 +153,7 @@ _package() {
   replaces=('linux-armv8-rc')
   conflicts=('linux')
   backup=("etc/mkinitcpio.d/${pkgbase}.preset")
-  install=${pkgname}.install
+  install=linux-pinephone.install
 
   cd "${srcdir}/${_srcname}"
 
