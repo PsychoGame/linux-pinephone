@@ -5,12 +5,12 @@
 _ver=5.7.0
 
 pkgbase=linux-pinephone
-_commit=2c5466501c8d3dfdb8f02ef37a442bcc55a09866
+_commit=4c0b416fa83cfc2bcc6296a9e1f6af4acdc06096
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=13
+pkgrel=14
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -40,8 +40,11 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '1280x720-hardcode.patch'
         'hdmi-audio.patch'
         'hdmi-out.patch'
-        'power15w.patch')
-sha256sums=('1b522c905d08d3b09fdc259461f7cf394b8416a69adc33ccb4f06e4f14400ec3'
+        'power15w.patch'
+        'stop-leds-during-suspend.patch'
+        'led-brightness.patch'
+        'led-brightness-1.patch')
+sha256sums=('7a0f7c5c16318f6cf9c941b7a58c03d91125651cd78b968869cb124d8044c873'
             '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -65,7 +68,10 @@ sha256sums=('1b522c905d08d3b09fdc259461f7cf394b8416a69adc33ccb4f06e4f14400ec3'
             '2b8c029c6a86b9d750a9de2efb2c56536c056b93619677f45063a036e4df1d6a'
             '81609f6ffb7cd3e23a262b44eae035e12ac0ce0fc9505eff24d561ad53fefe3e'
             'd84dc3317c22901c3ea08d498f7d56159e8639ac3d87bc5cd744888592f66c05'
-            'd35e82eeec9454e4a1800cdaa20a6151fbbd08dd2547b7ab9c77677ab4324d21')
+            'd35e82eeec9454e4a1800cdaa20a6151fbbd08dd2547b7ab9c77677ab4324d21'
+            'e26a9be504992536bd3e40c76f89194d72a2959be542a2647bf7bbcba82b4d6a'
+            '28a07ecd592b995243fe6158bc66c652708b3eb31d00e75878ae274cb5a80e00'
+            '818d285cdddec33c2684bfa899acd3c94e449f1bae35c0efe2796201d1b15b89')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
