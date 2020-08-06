@@ -10,7 +10,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=4
+pkgrel=5
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -43,7 +43,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         #'hdmi-out.patch'
         #'power15w.patch')
 sha256sums=('04b6a7a6467661077c02138605c15da4eabcb8addd0b1088f66238b859a20d90'
-            'a82130fb6e2e61a6029d8ab36e525168598b9999fa5c8c1421cae8f2922dc816'
+            '311f7bba714d698717283af8940e7bee310fc961a0e5ca7fdee233f56c43a152'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
