@@ -10,7 +10,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=14
+pkgrel=15
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -43,7 +43,8 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'power15w.patch'
         'stop-leds-during-suspend.patch'
         'led-brightness.patch'
-        'led-brightness-1.patch')
+        'led-brightness-1.patch'
+        'brightness.patch')
 sha256sums=('7a0f7c5c16318f6cf9c941b7a58c03d91125651cd78b968869cb124d8044c873'
             '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
@@ -71,7 +72,8 @@ sha256sums=('7a0f7c5c16318f6cf9c941b7a58c03d91125651cd78b968869cb124d8044c873'
             'd35e82eeec9454e4a1800cdaa20a6151fbbd08dd2547b7ab9c77677ab4324d21'
             'e26a9be504992536bd3e40c76f89194d72a2959be542a2647bf7bbcba82b4d6a'
             '28a07ecd592b995243fe6158bc66c652708b3eb31d00e75878ae274cb5a80e00'
-            '818d285cdddec33c2684bfa899acd3c94e449f1bae35c0efe2796201d1b15b89')
+            '818d285cdddec33c2684bfa899acd3c94e449f1bae35c0efe2796201d1b15b89'
+            '5cdf43c8aff5dca51e329db68dd81981cfe92191827be0fe166503917f98b4ec')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -94,6 +96,9 @@ prepare() {
 
   # battery
   patch -p1 -N < ../power15w.patch
+
+  # brightness
+  patch -p1 -N < ../brightness.patch
   
   # Manjaro-ARM patches
  # patch -Np1 -i "${srcdir}/add-pinephone-front-camera.patch"
