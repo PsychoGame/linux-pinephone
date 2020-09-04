@@ -2,15 +2,15 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-_ver=5.7.0
+_ver=5.7.19
 
 pkgbase=linux-pinephone
-_commit=4c0b416fa83cfc2bcc6296a9e1f6af4acdc06096
+_commit=915016070e1e40d2089a4e95c1dd4bbc7ef2e386
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=15
+pkgrel=1
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -45,7 +45,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'led-brightness.patch'
         'led-brightness-1.patch'
         'brightness.patch')
-sha256sums=('7a0f7c5c16318f6cf9c941b7a58c03d91125651cd78b968869cb124d8044c873'
+sha256sums=('30f3e32217e3338e8452010160f1814e19310d526f0b386ea2823731f8816d88'
             '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
