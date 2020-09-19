@@ -2,15 +2,15 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-_ver=5.7.19
+_ver=5.8.0
 
 pkgbase=linux-pinephone
-_commit=915016070e1e40d2089a4e95c1dd4bbc7ef2e386
+_commit=e1c26b7bd643515d3be20268cd2385df2388f8b9
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=3
+pkgrel=1
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -36,16 +36,12 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0013-bootsplash.patch'
         'wifi-power-saving.patch'
         'panic-led.patch'
-        'meta-jack-detection-patch.patch'
         'frontcam-modes.patch'
-        'hdmi-audio.patch'
         'hdmi-out.patch'
         'power15w.patch'
-        'stop-leds-during-suspend.patch'
-        'led-brightness.patch'
-        'led-brightness-1.patch'
-        'brightness.patch')
-sha256sums=('30f3e32217e3338e8452010160f1814e19310d526f0b386ea2823731f8816d88'
+        'improve-device-tree.patch'
+        'make-brightness-configurable.patch')
+sha256sums=('1a453242e58512fffc14ab37b5d461cbe32c5aec636d708042719368f3655808'
             '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -65,24 +61,17 @@ sha256sums=('30f3e32217e3338e8452010160f1814e19310d526f0b386ea2823731f8816d88'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
             '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
-            '9d9900d5c5a89c605a80e0ffff9889cde0af758b4ddf15ff266b73765332768d'
             'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
-            '81609f6ffb7cd3e23a262b44eae035e12ac0ce0fc9505eff24d561ad53fefe3e'
-            'd84dc3317c22901c3ea08d498f7d56159e8639ac3d87bc5cd744888592f66c05'
+            'a938fee6d9cdd15d20513377d4cf06fb713d639135f250aa113ecba89204dd39'
             'd35e82eeec9454e4a1800cdaa20a6151fbbd08dd2547b7ab9c77677ab4324d21'
-            'e26a9be504992536bd3e40c76f89194d72a2959be542a2647bf7bbcba82b4d6a'
-            '28a07ecd592b995243fe6158bc66c652708b3eb31d00e75878ae274cb5a80e00'
-            '818d285cdddec33c2684bfa899acd3c94e449f1bae35c0efe2796201d1b15b89'
-            '5cdf43c8aff5dca51e329db68dd81981cfe92191827be0fe166503917f98b4ec')
+            'c10b33137a926d0ae78779bd265d45f5c4bfe7916482022e02f49304bb770c09'
+            '0b43f2868fdd37a5c0ac4d789ec815260672e8490ea43b8aad1aff5e92352b65')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
 
   # disable power saving for now, wi-fi went out randomly
   patch -p1 -N < ../wifi-power-saving.patch
-
-  # jack detection for 5.7
-  patch -p1 -N < ../meta-jack-detection-patch.patch
 
   # kernel panic led
   patch -p1 -N < ../panic-led.patch
@@ -92,16 +81,16 @@ prepare() {
 
   # hdmi
   patch -p1 -N < ../hdmi-out.patch
-  patch -p1 -N < ../hdmi-audio.patch
 
   # battery
   patch -p1 -N < ../power15w.patch
 
+  # device tree
+  patch -p1 -N < ../improve-device-tree.patch
+
   # brightness
-  patch -p1 -N < ../brightness.patch
+  patch -p1 -N < ../make-brightness-configurable.patch
   
-  # Manjaro-ARM patches
- # patch -Np1 -i "${srcdir}/add-pinephone-front-camera.patch"
   # Bootsplash patches
   patch -Np1 -i "${srcdir}/0001-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0002-bootsplash.patch"
