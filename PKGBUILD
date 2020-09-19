@@ -35,7 +35,6 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0012-bootsplash.patch'
         '0013-bootsplash.patch'
         'wifi-power-saving.patch'
-        'panic-led.patch'
         'frontcam-modes.patch'
         'hdmi-out.patch'
         'improve-device-tree.patch'
@@ -59,7 +58,6 @@ sha256sums=('1a453242e58512fffc14ab37b5d461cbe32c5aec636d708042719368f3655808'
             '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
             '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
-            '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
             'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
             'a938fee6d9cdd15d20513377d4cf06fb713d639135f250aa113ecba89204dd39'
             'c10b33137a926d0ae78779bd265d45f5c4bfe7916482022e02f49304bb770c09'
@@ -70,9 +68,6 @@ prepare() {
 
   # disable power saving for now, wi-fi went out randomly
   patch -p1 -N < ../wifi-power-saving.patch
-
-  # kernel panic led
-  patch -p1 -N < ../panic-led.patch
 
   # camera
   patch -p1 -N < ../frontcam-modes.patch
