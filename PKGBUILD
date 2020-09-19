@@ -10,7 +10,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=2
+pkgrel=3
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -37,7 +37,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'wifi-power-saving.patch'
         'panic-led.patch'
         'meta-jack-detection-patch.patch'
-        '1280x720-hardcode.patch'
+        'frontcam-modes.patch'
         'hdmi-audio.patch'
         'hdmi-out.patch'
         'power15w.patch'
@@ -66,7 +66,7 @@ sha256sums=('30f3e32217e3338e8452010160f1814e19310d526f0b386ea2823731f8816d88'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
             '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
             '9d9900d5c5a89c605a80e0ffff9889cde0af758b4ddf15ff266b73765332768d'
-            '2b8c029c6a86b9d750a9de2efb2c56536c056b93619677f45063a036e4df1d6a'
+            'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
             '81609f6ffb7cd3e23a262b44eae035e12ac0ce0fc9505eff24d561ad53fefe3e'
             'd84dc3317c22901c3ea08d498f7d56159e8639ac3d87bc5cd744888592f66c05'
             'd35e82eeec9454e4a1800cdaa20a6151fbbd08dd2547b7ab9c77677ab4324d21'
@@ -88,7 +88,7 @@ prepare() {
   patch -p1 -N < ../panic-led.patch
 
   # camera
-  #patch -p1 -N < ../1280x720-hardcode.patch
+  #patch -p1 -N < ../frontcam-modes.patch
 
   # hdmi
   patch -p1 -N < ../hdmi-out.patch
