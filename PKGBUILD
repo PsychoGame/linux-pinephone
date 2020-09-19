@@ -38,7 +38,6 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'panic-led.patch'
         'frontcam-modes.patch'
         'hdmi-out.patch'
-        'power15w.patch'
         'improve-device-tree.patch'
         'make-brightness-configurable.patch')
 sha256sums=('1a453242e58512fffc14ab37b5d461cbe32c5aec636d708042719368f3655808'
@@ -63,7 +62,6 @@ sha256sums=('1a453242e58512fffc14ab37b5d461cbe32c5aec636d708042719368f3655808'
             '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
             'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
             'a938fee6d9cdd15d20513377d4cf06fb713d639135f250aa113ecba89204dd39'
-            'd35e82eeec9454e4a1800cdaa20a6151fbbd08dd2547b7ab9c77677ab4324d21'
             'c10b33137a926d0ae78779bd265d45f5c4bfe7916482022e02f49304bb770c09'
             '0b43f2868fdd37a5c0ac4d789ec815260672e8490ea43b8aad1aff5e92352b65')
 
@@ -81,9 +79,6 @@ prepare() {
 
   # hdmi
   patch -p1 -N < ../hdmi-out.patch
-
-  # battery
-  patch -p1 -N < ../power15w.patch
 
   # device tree
   patch -p1 -N < ../improve-device-tree.patch
