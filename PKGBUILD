@@ -88,7 +88,7 @@ prepare() {
   patch -p1 -N < ../panic-led.patch
 
   # camera
-  #patch -p1 -N < ../frontcam-modes.patch
+  patch -p1 -N < ../frontcam-modes.patch
 
   # hdmi
   patch -p1 -N < ../hdmi-out.patch
