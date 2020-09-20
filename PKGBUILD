@@ -40,7 +40,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'improve-device-tree.patch'
         'make-brightness-configurable.patch')
 sha256sums=('1a453242e58512fffc14ab37b5d461cbe32c5aec636d708042719368f3655808'
-            '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
+            '1d3cc4eb72224bb61ec751add1519a783839fb9893ccd445c17fbbd266a0b206'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
