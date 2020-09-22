@@ -10,7 +10,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=3.0
+pkgrel=4
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -46,7 +46,7 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'led-brightness-1.patch'
         'brightness.patch')
 sha256sums=('30f3e32217e3338e8452010160f1814e19310d526f0b386ea2823731f8816d88'
-            '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
+            '11cafae17c4c6e5b87ee024f1a93ac4b4d6bba8267536be8e99585af9db56ddc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
