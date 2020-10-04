@@ -10,7 +10,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=4
+pkgrel=5
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -44,7 +44,8 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'stop-leds-during-suspend.patch'
         'led-brightness.patch'
         'led-brightness-1.patch'
-        'brightness.patch')
+        'brightness.patch'
+        'camera-auto-focus.patch')
 sha256sums=('30f3e32217e3338e8452010160f1814e19310d526f0b386ea2823731f8816d88'
             '11cafae17c4c6e5b87ee024f1a93ac4b4d6bba8267536be8e99585af9db56ddc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
@@ -73,7 +74,8 @@ sha256sums=('30f3e32217e3338e8452010160f1814e19310d526f0b386ea2823731f8816d88'
             'e26a9be504992536bd3e40c76f89194d72a2959be542a2647bf7bbcba82b4d6a'
             '28a07ecd592b995243fe6158bc66c652708b3eb31d00e75878ae274cb5a80e00'
             '818d285cdddec33c2684bfa899acd3c94e449f1bae35c0efe2796201d1b15b89'
-            '5cdf43c8aff5dca51e329db68dd81981cfe92191827be0fe166503917f98b4ec')
+            '5cdf43c8aff5dca51e329db68dd81981cfe92191827be0fe166503917f98b4ec'
+            '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -99,9 +101,12 @@ prepare() {
 
   # brightness
   patch -p1 -N < ../brightness.patch
+
+  # camera autofocus
+  patch -p1 -N < ../camera-auto-focus.patch
   
   # Manjaro-ARM patches
- # patch -Np1 -i "${srcdir}/add-pinephone-front-camera.patch"
+
   # Bootsplash patches
   patch -Np1 -i "${srcdir}/0001-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0002-bootsplash.patch"
@@ -160,7 +165,7 @@ build() {
 
 _package() {
   pkgdesc="The Linux Kernel and modules - ${_desc}"
-  depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7')
+  depends=('coreutils' 'linux-firmware' 'ov5640-firmware' 'kmod' 'mkinitcpio>=0.7')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=('kernel26' "linux=${pkgver}")
   replaces=('linux-armv8-rc')
