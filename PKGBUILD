@@ -10,7 +10,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=2
+pkgrel=3
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -47,7 +47,7 @@ source=("linux-$_commit.tar.gz::https://github.com/megous/linux/archive/${_commi
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
 sha256sums=('43aba2e0e569e398674571bcb44b9fa9b7bea6d6084bb4fc1978d07c0479e9fe'
-            '21097d4b85ab5f3e0c7a68253814464a127b49b8949ce93c916837e56edd9a6c'
+            'b0abc53bdf42a93c96429e0739f2d9f9fd78e990a98ee907c1d15c4e746bf38b'
             'dc262308d884b9ad10429d760bd01cdb7c008e5c9939f7b119f171b489d55c4e'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
             '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
