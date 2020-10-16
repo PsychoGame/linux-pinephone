@@ -2,10 +2,10 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-_ver=5.8.0
+_ver=5.9.0
 
 pkgbase=linux-pinephone
-_commit=e1c26b7bd643515d3be20268cd2385df2388f8b9
+_commit="e98db7f114d7602c6b847d76e183787f0c97cf5b"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
@@ -16,11 +16,24 @@ url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
-source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commit}.tar.gz"
+source=("linux-$_commit.tar.gz::https://github.com/megous/linux/archive/${_commit}.tar.gz"
         'config'
+        'SA-00435.patch'
+        'wifi-power-saving.patch'
+        'panic-led.patch'
+        'enable-hdmi-output-pinetab.patch'
+        'improve-brightness.patch'
+        'enable-jack-detection-pinetab.patch'
+        'pinetab-bluetooth.patch'
+        'pinetab-accelerometer.patch'
+        'camera-added-bggr-bayer-mode.patch'
+        'camera-autofocus.patch'
+        'remove-v4l2-flash-pp.patch'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
+        '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
+        '0002-revert-fbcon-remove-soft-scrollback-code.patch'
         '0001-bootsplash.patch'
         '0002-bootsplash.patch'
         '0003-bootsplash.patch'
@@ -32,19 +45,26 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0009-bootsplash.patch'
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
-        '0012-bootsplash.patch'
-        '0013-bootsplash.patch'
-        'wifi-power-saving.patch'
-        'frontcam-modes.patch'
-        'hdmi-out.patch'
-        'improve-device-tree.patch'
-        'make-brightness-configurable.patch')
-sha256sums=('1a453242e58512fffc14ab37b5d461cbe32c5aec636d708042719368f3655808'
-            '35dde29976a9689bace85d997e85e41e576314227fac1102acd5f660d586c7a0'
+        '0012-bootsplash.patch')
+sha256sums=('43aba2e0e569e398674571bcb44b9fa9b7bea6d6084bb4fc1978d07c0479e9fe'
+            '10baadbbe5ae5632e53e1cc34b3878f0c89e6c1391e05283198d845d21a8c6f4'
+            'dc262308d884b9ad10429d760bd01cdb7c008e5c9939f7b119f171b489d55c4e'
+            'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
+            '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
+            'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
+            '870cf28731738129d653bfbfbe1d1928ccee1dfb38734cc9e74aa45889a58802'
+            '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
+            'dc4048106a515b3deb43c9de47674d0c99028336723e71d5df2a3897352df524'
+            '0e6453bf258c34349e5cc76811d804392aaa1ef9230c343719879682aaff7515'
+            'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
+            '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249'
+            '6872c9d919efdbf2de567f838a2abacf9a15f3ff1c1d883a1410a1917d83f8dc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
-            'a504f6cf84094e08eaa3cc5b28440261797bf4f06f04993ee46a20628ff2b53c'
+            'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
+            '37a221c12b40122167b0a30b5a9f2fc99e2aeb94e4db58a719c2b30171c5aeb5'
+            '59202940d4f12bad23c194a530edc900e066866c9945e39748484a6545af96de'
             'e096b127a5208f56d368d2cb938933454d7200d70c86b763aa22c38e0ddb8717'
             '8c1c880f2caa9c7ae43281a35410203887ea8eae750fe8d360d0c8bf80fcc6e0'
             '1144d51e5eb980fceeec16004f3645ed04a60fac9e0c7cf88a15c5c1e7a4b89e'
@@ -55,33 +75,47 @@ sha256sums=('1a453242e58512fffc14ab37b5d461cbe32c5aec636d708042719368f3655808'
             'a7aefeacf22c600fafd9e040a985a913643095db7272c296b77a0a651c6a140a'
             'e9f22cbb542591087d2d66dc6dc912b1434330ba3cd13d2df741d869a2c31e89'
             '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
-            '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
-            '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
-            'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
-            'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
-            'a938fee6d9cdd15d20513377d4cf06fb713d639135f250aa113ecba89204dd39'
-            'c10b33137a926d0ae78779bd265d45f5c4bfe7916482022e02f49304bb770c09'
-            '0b43f2868fdd37a5c0ac4d789ec815260672e8490ea43b8aad1aff5e92352b65')
+            '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
 
+  # BlueZ security vulnerability
+  # INTEL-SA-00435:
+  #   - CVE-2020-12351
+  #   - CVE-2020-12352
+  #   - CVE-2020-24490
+  patch -p1 -N < ../SA-00435.patch
+
   # disable power saving for now, wi-fi went out randomly
   patch -p1 -N < ../wifi-power-saving.patch
 
+  # Enable jack detection on PineTab
+  patch -p1 -N < ../enable-jack-detection-pinetab.patch
+
+  # kernel panic led
+  patch -p1 -N < ../panic-led.patch
+
+  # Enable HDMI on PineTab
+  patch -p1 -N < ../enable-hdmi-output-pinetab.patch
+
+  # Improve brightness
+  patch -p1 -N < ../improve-brightness.patch
+
   # camera
-  patch -p1 -N < ../frontcam-modes.patch
+  patch -p1 -N < ../camera-added-bggr-bayer-mode.patch
+  patch -p1 -N < ../camera-autofocus.patch
+  patch -p1 -N < ../remove-v4l2-flash-pp.patch
 
-  # hdmi
-  patch -p1 -N < ../hdmi-out.patch
+  # Enable Bluetooth on PineTab
+  patch -p1 -N < ../pinetab-bluetooth.patch
 
-  # device tree
-  patch -p1 -N < ../improve-device-tree.patch
+  # Enable accelerometer on PineTab
+  patch -p1 -N < ../pinetab-accelerometer.patch
 
-  # brightness
-  patch -p1 -N < ../make-brightness-configurable.patch
-  
-  # Bootsplash patches
+  # bootsplash stuffs (took from glorious manjaro arm)
+  patch -Np1 -i "${srcdir}/0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch"
+  patch -Np1 -i "${srcdir}/0002-revert-fbcon-remove-soft-scrollback-code.patch"
   patch -Np1 -i "${srcdir}/0001-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0002-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0003-bootsplash.patch"
@@ -102,9 +136,7 @@ prepare() {
 
   # don't run depmod on 'make install'. We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
-}
-
-build() {
+  
   cd "${srcdir}/${_srcname}"
 
   # get kernel version
@@ -129,7 +161,11 @@ build() {
   #return 1
   ####################
 
-  #yes "" | make config
+  #yes "" | make config  
+}
+
+build() {
+  cd "${srcdir}/${_srcname}"
 
   # build!
   unset LDFLAGS
