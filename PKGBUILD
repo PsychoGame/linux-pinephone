@@ -10,7 +10,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=5
+pkgrel=6
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -45,7 +45,13 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         'led-brightness.patch'
         'led-brightness-1.patch'
         'brightness.patch'
-        'camera-auto-focus.patch')
+        'camera-auto-focus.patch'
+        'bluetooth-a2mp-fix-not-initializing-all-members.patch'
+        'bluetooth-l2cap-fix-calling-sk_filter-on-non-socket-based-channel.patch'
+        'bluetooth-mgmt-fix-not-checking-if-bt_hs-is-enabled.patch'
+        'bluetooth-consolidate-encryption-handling-in-hci_encrypt_cfm.patch'
+        'bluetooth-fix-update-of-connection-state-in-hci_encrypt_cfm.patch'
+        'bluetooth-disconnect-if-e0-is-used-for-level-4.patch')
 sha256sums=('30f3e32217e3338e8452010160f1814e19310d526f0b386ea2823731f8816d88'
             '11cafae17c4c6e5b87ee024f1a93ac4b4d6bba8267536be8e99585af9db56ddc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
@@ -75,7 +81,13 @@ sha256sums=('30f3e32217e3338e8452010160f1814e19310d526f0b386ea2823731f8816d88'
             '28a07ecd592b995243fe6158bc66c652708b3eb31d00e75878ae274cb5a80e00'
             '818d285cdddec33c2684bfa899acd3c94e449f1bae35c0efe2796201d1b15b89'
             '5cdf43c8aff5dca51e329db68dd81981cfe92191827be0fe166503917f98b4ec'
-            '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249')
+            '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249'
+            '78396bdcf6740965069b8186e8af78d5799a9bb223aaec461b31d79b699f0ba7'
+            'e51bf836cf82ada6c0a257227bd80ef198d9241efe4547fe9ad78a590388bb1f'
+            'c39bf2bc5ac7d609394dffa0d422ce499620d129899dd9a64f6db834bc52a2a9'
+            '01477147965e3dd872b8b6f39ebfd2bf39e6852ae861d286404522425fcef381'
+            'cdf31a574ebf96087b85c6d6576f25e5a1f13a4fc7dba1870ddc5c1456de8aae'
+            '2488122dc54aabed0480a555af11e437219a8ca1720dd63d34393e219916fe9e')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -104,6 +116,14 @@ prepare() {
 
   # camera autofocus
   patch -p1 -N < ../camera-auto-focus.patch
+
+  # patch bluetooth security issue
+  patch -p1 -N < ../bluetooth-a2mp-fix-not-initializing-all-members.patch
+  patch -p1 -N < ../bluetooth-l2cap-fix-calling-sk_filter-on-non-socket-based-channel.patch
+  patch -p1 -N < ../bluetooth-mgmt-fix-not-checking-if-bt_hs-is-enabled.patch
+  patch -p1 -N < ../bluetooth-consolidate-encryption-handling-in-hci_encrypt_cfm.patch
+  patch -p1 -N < ../bluetooth-fix-update-of-connection-state-in-hci_encrypt_cfm.patch
+  patch -p1 -N < ../bluetooth-disconnect-if-e0-is-used-for-level-4.patch
   
   # Manjaro-ARM patches
 
