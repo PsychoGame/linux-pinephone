@@ -15,7 +15,6 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64-5.9/linux-pine64-${_commit}.tar.gz"
-        "https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config'
         'wifi-power-saving.patch'
         'panic-led.patch'
@@ -41,7 +40,6 @@ source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
 sha256sums=('346d2a7e062357e9a317f27cf1d9f9d58b4d571fc5ade10a39a68907dc35bbeb'
-            '7edb7b9d06b02f9b88d868c74ab618baf899c94edb19a73291f640dbea55c312'
             '84d9897fa970d7b93a171b8b3955fbe9f95fe7c41c56f8200dcddb1be01aefd6'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
             '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
@@ -69,9 +67,6 @@ sha256sums=('346d2a7e062357e9a317f27cf1d9f9d58b4d571fc5ade10a39a68907dc35bbeb'
 
 prepare() {
   cd "${srcdir}/${_srcname}"
-
-  # add upstream patch
-  patch -p1 -i "${srcdir}/patch-${pkgver}"
 
   # disable power saving for now, wi-fi went out randomly
   patch -p1 -N < ../wifi-power-saving.patch
