@@ -1,7 +1,6 @@
 build-package:
   tags:
     - bigbuilds
-    - philm
   script:
     - sudo pacman -Syy && makepkg -scr --noconfirm
   artifacts:
