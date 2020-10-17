@@ -21,7 +21,6 @@ source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64
         'enable-hdmi-output-pinetab.patch'
         'improve-brightness.patch'
         'enable-jack-detection-pinetab.patch'
-        'remove-v4l2-flash-pp.patch'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
@@ -46,7 +45,6 @@ sha256sums=('346d2a7e062357e9a317f27cf1d9f9d58b4d571fc5ade10a39a68907dc35bbeb'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
             '870cf28731738129d653bfbfbe1d1928ccee1dfb38734cc9e74aa45889a58802'
             '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
-            '6872c9d919efdbf2de567f838a2abacf9a15f3ff1c1d883a1410a1917d83f8dc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
@@ -82,9 +80,6 @@ prepare() {
 
   # Improve brightness
   patch -p1 -N < ../improve-brightness.patch
-
-  # Remove flash node for ov5640
-  patch -p1 -N < ../remove-v4l2-flash-pp.patch
 
   # bootsplash stuffs (took from glorious manjaro arm)
   patch -Np1 -i "${srcdir}/0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch"
