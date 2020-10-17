@@ -41,7 +41,7 @@ source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64
         '0012-bootsplash.patch')
 sha256sums=('e7fe20905b5d2e9ef34c5aa00219747bf34d3bf4e23962f3291d53f5c6613f75'
             '7edb7b9d06b02f9b88d868c74ab618baf899c94edb19a73291f640dbea55c312'
-            'b0abc53bdf42a93c96429e0739f2d9f9fd78e990a98ee907c1d15c4e746bf38b'
+            'a328fa60652b31952d8617766c7dbf507ac46481bae7c222866d85fcdfa5346d'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
             '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
