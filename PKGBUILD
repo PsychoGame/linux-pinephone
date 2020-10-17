@@ -5,12 +5,12 @@
 _ver=5.8.0
 
 pkgbase=linux-pinephone
-_commit=e1c26b7bd643515d3be20268cd2385df2388f8b9
+_commit=e91996c1e20d616c5e01568bbad4a49bf0788beb
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=${_ver}
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -33,13 +33,12 @@ source=("https://gitlab.com/pine64-org/linux/-/archive/${_commit}/linux-${_commi
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch'
-        '0013-bootsplash.patch'
         'wifi-power-saving.patch'
         'frontcam-modes.patch'
         'hdmi-out.patch'
         'improve-device-tree.patch'
         'make-brightness-configurable.patch')
-sha256sums=('1a453242e58512fffc14ab37b5d461cbe32c5aec636d708042719368f3655808'
+sha256sums=('6df28e4c0d44b4114f759a088af5a1558a2cb6bcc75933cb0c109aa2287f4dd3'
             '1d3cc4eb72224bb61ec751add1519a783839fb9893ccd445c17fbbd266a0b206'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -56,7 +55,6 @@ sha256sums=('1a453242e58512fffc14ab37b5d461cbe32c5aec636d708042719368f3655808'
             'e9f22cbb542591087d2d66dc6dc912b1434330ba3cd13d2df741d869a2c31e89'
             '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
             '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d'
-            '035ea4b2a7621054f4560471f45336b981538a40172d8f17285910d4e0e0b3ef'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
             'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
             'a938fee6d9cdd15d20513377d4cf06fb713d639135f250aa113ecba89204dd39'
