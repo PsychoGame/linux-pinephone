@@ -3,7 +3,7 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_commit="e4d70586d73ec9b5f502ccabc26b6a1eaacbc5cc"
+_commit="da1a1dee4471aa5da391517c4af40d2c80fe828d"
 _srcname=linux-pine64-5.9-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
@@ -40,7 +40,7 @@ source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('SKIP'
+sha256sums=('346d2a7e062357e9a317f27cf1d9f9d58b4d571fc5ade10a39a68907dc35bbeb'
             '7edb7b9d06b02f9b88d868c74ab618baf899c94edb19a73291f640dbea55c312'
             '84d9897fa970d7b93a171b8b3955fbe9f95fe7c41c56f8200dcddb1be01aefd6'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
