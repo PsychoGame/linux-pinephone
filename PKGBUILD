@@ -2,23 +2,21 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-_ver=5.9.0
-
 pkgbase=linux-pinephone
-_commit="e98db7f114d7602c6b847d76e183787f0c97cf5b"
+_commit="e4d70586d73ec9b5f502ccabc26b6a1eaacbc5cc"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
-pkgver=${_ver}
-pkgrel=3
+pkgver=5.9.1
+pkgrel=4
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
-source=("linux-$_commit.tar.gz::https://github.com/megous/linux/archive/${_commit}.tar.gz"
+source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64-5.9/linux-pine64-${_commit}.tar.gz"
+        "https://www.kernel.org/pub/linux/kernel/v5.x/patch-${pkgver}.xz"
         'config'
-        'SA-00435.patch'
         'wifi-power-saving.patch'
         'panic-led.patch'
         'enable-hdmi-output-pinetab.patch'
@@ -46,9 +44,9 @@ source=("linux-$_commit.tar.gz::https://github.com/megous/linux/archive/${_commi
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('43aba2e0e569e398674571bcb44b9fa9b7bea6d6084bb4fc1978d07c0479e9fe'
+sha256sums=('e7fe20905b5d2e9ef34c5aa00219747bf34d3bf4e23962f3291d53f5c6613f75'
+            '7edb7b9d06b02f9b88d868c74ab618baf899c94edb19a73291f640dbea55c312'
             'b0abc53bdf42a93c96429e0739f2d9f9fd78e990a98ee907c1d15c4e746bf38b'
-            'dc262308d884b9ad10429d760bd01cdb7c008e5c9939f7b119f171b489d55c4e'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
             '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
@@ -80,12 +78,8 @@ sha256sums=('43aba2e0e569e398674571bcb44b9fa9b7bea6d6084bb4fc1978d07c0479e9fe'
 prepare() {
   cd "${srcdir}/${_srcname}"
 
-  # BlueZ security vulnerability
-  # INTEL-SA-00435:
-  #   - CVE-2020-12351
-  #   - CVE-2020-12352
-  #   - CVE-2020-24490
-  patch -p1 -N < ../SA-00435.patch
+  # add upstream patch
+  patch -p1 -i "${srcdir}/patch-${pkgver}"
 
   # disable power saving for now, wi-fi went out randomly
   patch -p1 -N < ../wifi-power-saving.patch
