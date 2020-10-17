@@ -8,7 +8,7 @@ _srcname=linux-pine64-5.9-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.1
-pkgrel=4
+pkgrel=1
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -24,9 +24,6 @@ source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64
         'enable-jack-detection-pinetab.patch'
         'pinetab-bluetooth.patch'
         'pinetab-accelerometer.patch'
-        'camera-added-bggr-bayer-mode.patch'
-        'camera-autofocus.patch'
-        'remove-v4l2-flash-pp.patch'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
@@ -54,9 +51,6 @@ sha256sums=('e7fe20905b5d2e9ef34c5aa00219747bf34d3bf4e23962f3291d53f5c6613f75'
             '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
             'dc4048106a515b3deb43c9de47674d0c99028336723e71d5df2a3897352df524'
             '0e6453bf258c34349e5cc76811d804392aaa1ef9230c343719879682aaff7515'
-            'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
-            '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249'
-            '6872c9d919efdbf2de567f838a2abacf9a15f3ff1c1d883a1410a1917d83f8dc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
@@ -95,11 +89,6 @@ prepare() {
 
   # Improve brightness
   patch -p1 -N < ../improve-brightness.patch
-
-  # camera
-  patch -p1 -N < ../camera-added-bggr-bayer-mode.patch
-  patch -p1 -N < ../camera-autofocus.patch
-  patch -p1 -N < ../remove-v4l2-flash-pp.patch
 
   # Enable Bluetooth on PineTab
   patch -p1 -N < ../pinetab-bluetooth.patch
