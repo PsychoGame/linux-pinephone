@@ -22,8 +22,6 @@ source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64
         'enable-hdmi-output-pinetab.patch'
         'improve-brightness.patch'
         'enable-jack-detection-pinetab.patch'
-        'pinetab-bluetooth.patch'
-        'pinetab-accelerometer.patch'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
@@ -49,8 +47,6 @@ sha256sums=('e7fe20905b5d2e9ef34c5aa00219747bf34d3bf4e23962f3291d53f5c6613f75'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
             '870cf28731738129d653bfbfbe1d1928ccee1dfb38734cc9e74aa45889a58802'
             '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
-            'dc4048106a515b3deb43c9de47674d0c99028336723e71d5df2a3897352df524'
-            '0e6453bf258c34349e5cc76811d804392aaa1ef9230c343719879682aaff7515'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
@@ -89,12 +85,6 @@ prepare() {
 
   # Improve brightness
   patch -p1 -N < ../improve-brightness.patch
-
-  # Enable Bluetooth on PineTab
-  patch -p1 -N < ../pinetab-bluetooth.patch
-
-  # Enable accelerometer on PineTab
-  patch -p1 -N < ../pinetab-accelerometer.patch
 
   # bootsplash stuffs (took from glorious manjaro arm)
   patch -Np1 -i "${srcdir}/0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch"
