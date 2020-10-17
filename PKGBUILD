@@ -2,13 +2,13 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-pkgbase=linux59-pinephone
+pkgbase=linux-pinephone
 _commit="e4d70586d73ec9b5f502ccabc26b6a1eaacbc5cc"
 _srcname=linux-pine64-5.9-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.1
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -22,6 +22,7 @@ source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64
         'enable-hdmi-output-pinetab.patch'
         'improve-brightness.patch'
         'enable-jack-detection-pinetab.patch'
+        'remove-v4l2-flash-pp.patch'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
@@ -47,6 +48,7 @@ sha256sums=('e7fe20905b5d2e9ef34c5aa00219747bf34d3bf4e23962f3291d53f5c6613f75'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
             '870cf28731738129d653bfbfbe1d1928ccee1dfb38734cc9e74aa45889a58802'
             '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
+            '6872c9d919efdbf2de567f838a2abacf9a15f3ff1c1d883a1410a1917d83f8dc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
@@ -85,6 +87,9 @@ prepare() {
 
   # Improve brightness
   patch -p1 -N < ../improve-brightness.patch
+
+  # Remove flash node for ov5640
+  patch -p1 -N < ../remove-v4l2-flash-pp.patch
 
   # bootsplash stuffs (took from glorious manjaro arm)
   patch -Np1 -i "${srcdir}/0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch"
@@ -150,9 +155,9 @@ _package() {
   pkgdesc="The Linux Kernel and modules - ${_desc}"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7')
   optdepends=('crda: to set the correct wireless channels of your country')
-  provides=('kernel26' "linux=${pkgver}" "linux-pinephone=${pkgver}")
+  provides=('kernel26' "linux=${pkgver}")
   replaces=('linux-armv8-rc')
-  conflicts=('linux' 'linux-pinephone')
+  conflicts=('linux')
   backup=("etc/mkinitcpio.d/${pkgbase}.preset")
   install=${pkgname}.install
 
@@ -207,8 +212,8 @@ _package() {
 
 _package-headers() {
   pkgdesc="Header files and scripts for building modules for linux kernel - ${_desc}"
-  provides=("linux-headers=${pkgver}" "linux-pinephone-headers=${pkgver}")
-  conflicts=('linux-headers' 'linux-pinephone-headers')
+  provides=("linux-headers=${pkgver}")
+  conflicts=('linux-headers')
   cd "${srcdir}/${_srcname}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
