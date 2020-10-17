@@ -2,7 +2,7 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-pkgbase=linux-pinephone
+pkgbase=linux59-pinephone
 _commit="e4d70586d73ec9b5f502ccabc26b6a1eaacbc5cc"
 _srcname=linux-pine64-5.9-${_commit}
 _kernelname=${pkgbase#linux}
