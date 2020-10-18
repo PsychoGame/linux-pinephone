@@ -8,19 +8,20 @@ _srcname=linux-pine64-5.9-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.1
-pkgrel=4
+pkgrel=5
 arch=('aarch64')
-url="https://gitlab.com/pine64-org/linux"
+url="https://gitlab.com/smaeul/linux"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
-source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64-5.9/linux-pine64-${_commit}.tar.gz"
+source=("linux-$_commit.tar.gz::$url/-/archive/pine64-5.9/linux-pine64-${_commit}.tar.gz"
         'config'
         'wifi-power-saving.patch'
         'panic-led.patch'
         'enable-hdmi-output-pinetab.patch'
         'improve-brightness.patch'
         'enable-jack-detection-pinetab.patch'
+        'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
@@ -45,6 +46,7 @@ sha256sums=('346d2a7e062357e9a317f27cf1d9f9d58b4d571fc5ade10a39a68907dc35bbeb'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
             '870cf28731738129d653bfbfbe1d1928ccee1dfb38734cc9e74aa45889a58802'
             '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
+            '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
@@ -81,7 +83,10 @@ prepare() {
   # Improve brightness
   patch -p1 -N < ../improve-brightness.patch
 
-  # bootsplash stuffs (took from glorious manjaro arm)
+  # Make need of firmware optional
+  patch -p1 -N < ../media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch
+
+  # bootsplash
   patch -Np1 -i "${srcdir}/0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch"
   patch -Np1 -i "${srcdir}/0002-revert-fbcon-remove-soft-scrollback-code.patch"
   patch -Np1 -i "${srcdir}/0001-bootsplash.patch"
@@ -144,7 +149,8 @@ build() {
 _package() {
   pkgdesc="The Linux Kernel and modules - ${_desc}"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7')
-  optdepends=('crda: to set the correct wireless channels of your country')
+  optdepends=('crda: to set the correct wireless channels of your country'
+              'ov5640-firmware: to support autofocus')
   provides=('kernel26' "linux=${pkgver}")
   replaces=('linux-armv8-rc')
   conflicts=('linux')
