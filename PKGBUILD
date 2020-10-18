@@ -8,7 +8,7 @@ _srcname=linux-pine64-5.9-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.1
-pkgrel=3
+pkgrel=4
 arch=('aarch64')
 url="https://gitlab.com/pine64-org/linux"
 license=('GPL2')
@@ -39,7 +39,7 @@ source=("linux-$_commit.tar.gz::https://gitlab.com/smaeul/linux/-/archive/pine64
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
 sha256sums=('346d2a7e062357e9a317f27cf1d9f9d58b4d571fc5ade10a39a68907dc35bbeb'
-            '84d9897fa970d7b93a171b8b3955fbe9f95fe7c41c56f8200dcddb1be01aefd6'
+            'a60c3cbd66b664b4d5464bdac2cd9f91827839749702d12eec6d1dec223ba157'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
             '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
