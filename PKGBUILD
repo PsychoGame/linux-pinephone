@@ -3,12 +3,12 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_commit="da1a1dee4471aa5da391517c4af40d2c80fe828d"
+_commit="81824b88010a3fcebf6fca8073cb00249de351d8"
 _srcname=linux-pine64-5.9-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.1
-pkgrel=5
+pkgrel=6
 arch=('aarch64')
 url="https://gitlab.com/smaeul/linux"
 license=('GPL2')
@@ -16,15 +16,18 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' '
 options=('!strip')
 source=("linux-$_commit.tar.gz::$url/-/archive/pine64-5.9/linux-pine64-${_commit}.tar.gz"
         'config'
-        'wifi-power-saving.patch'
-        'panic-led.patch'
-        'enable-hdmi-output-pinetab.patch'
-        'improve-brightness.patch'
-        'enable-jack-detection-pinetab.patch'
-        'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
+        'wifi-power-saving.patch'
+        'enable-jack-detection-pinetab.patch'
+        'panic-led.patch'
+        'enable-hdmi-output-pinetab.patch'
+        'improve-brightness.patch'
+        'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
+        'megi-fix-xbd599-timings.patch'
+        'megi-fix-mipi-dsi-panel-framerate.patch'
+        'usb-musb-avoid-the-hang-in-musb_pm_runtime_check_ses.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-soft-scrollback-code.patch'
         '0001-bootsplash.patch'
@@ -39,17 +42,20 @@ source=("linux-$_commit.tar.gz::$url/-/archive/pine64-5.9/linux-pine64-${_commit
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('346d2a7e062357e9a317f27cf1d9f9d58b4d571fc5ade10a39a68907dc35bbeb'
+sha256sums=('0f2a2df49cb7ff3d22294120999f082ee54380586343bfa6a3cef417ad4d8985'
             'a60c3cbd66b664b4d5464bdac2cd9f91827839749702d12eec6d1dec223ba157'
-            'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
-            '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
-            'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
-            '870cf28731738129d653bfbfbe1d1928ccee1dfb38734cc9e74aa45889a58802'
-            '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
-            '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
+            'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
+            '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
+            '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
+            'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
+            '870cf28731738129d653bfbfbe1d1928ccee1dfb38734cc9e74aa45889a58802'
+            '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
+            'cedba5198f330b2b4873cc9056e6424f95660a5a519c7cc4fbbb21d6016f2710'
+            '0c99f5fdab71cf52960b9c84a0dd89658bfe2fbf2e1eabac0d267d816c8a3335'
+            '2c751e96d07fc7cb1f91c0fd27267ed17539c3ffdfa0a70958b4dc3e05d00a54'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '37a221c12b40122167b0a30b5a9f2fc99e2aeb94e4db58a719c2b30171c5aeb5'
             '59202940d4f12bad23c194a530edc900e066866c9945e39748484a6545af96de'
@@ -68,39 +74,14 @@ sha256sums=('346d2a7e062357e9a317f27cf1d9f9d58b4d571fc5ade10a39a68907dc35bbeb'
 prepare() {
   cd "${srcdir}/${_srcname}"
 
-  # disable power saving for now, wi-fi went out randomly
-  patch -p1 -N < ../wifi-power-saving.patch
-
-  # Enable jack detection on PineTab
-  patch -p1 -N < ../enable-jack-detection-pinetab.patch
-
-  # kernel panic led
-  patch -p1 -N < ../panic-led.patch
-
-  # Enable HDMI on PineTab
-  patch -p1 -N < ../enable-hdmi-output-pinetab.patch
-
-  # Improve brightness
-  patch -p1 -N < ../improve-brightness.patch
-
-  # Make need of firmware optional
-  patch -p1 -N < ../media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch
-
-  # bootsplash
-  patch -Np1 -i "${srcdir}/0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch"
-  patch -Np1 -i "${srcdir}/0002-revert-fbcon-remove-soft-scrollback-code.patch"
-  patch -Np1 -i "${srcdir}/0001-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0002-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0003-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0004-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0005-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0006-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0007-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0008-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0009-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0010-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0011-bootsplash.patch"
-  patch -Np1 -i "${srcdir}/0012-bootsplash.patch"
+  local src
+  for src in "${source[@]}"; do
+      src="${src%%::*}"
+      src="${src##*/}"
+      [[ $src = *.patch ]] || continue
+      msg2 "Applying patch: $src..."
+      patch -Np1 < "../$src"
+  done
 
   cat "${srcdir}/config" > ./.config
 
