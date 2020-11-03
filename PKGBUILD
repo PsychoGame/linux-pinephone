@@ -8,7 +8,7 @@ _srcname=linux-pine64-5.9-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.1
-pkgrel=6
+pkgrel=7
 arch=('aarch64')
 url="https://gitlab.com/smaeul/linux"
 license=('GPL2')
@@ -27,6 +27,7 @@ source=("linux-$_commit.tar.gz::$url/-/archive/pine64-5.9/linux-pine64-${_commit
         'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
         'megi-fix-xbd599-timings.patch'
         'megi-fix-mipi-dsi-panel-framerate.patch'
+        'megi-switch-parent-of-MIPI-DSI.patch'
         'usb-musb-avoid-the-hang-in-musb_pm_runtime_check_ses.patch')
 sha256sums=('0f2a2df49cb7ff3d22294120999f082ee54380586343bfa6a3cef417ad4d8985'
             'a60c3cbd66b664b4d5464bdac2cd9f91827839749702d12eec6d1dec223ba157'
@@ -41,6 +42,7 @@ sha256sums=('0f2a2df49cb7ff3d22294120999f082ee54380586343bfa6a3cef417ad4d8985'
             '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
             'cedba5198f330b2b4873cc9056e6424f95660a5a519c7cc4fbbb21d6016f2710'
             '0c99f5fdab71cf52960b9c84a0dd89658bfe2fbf2e1eabac0d267d816c8a3335'
+            'ae3ef69ca6f771be66bccdb45847f421d29bb95d8cc054bcdad8e284f02f8840'
             '2c751e96d07fc7cb1f91c0fd27267ed17539c3ffdfa0a70958b4dc3e05d00a54')
 
 prepare() {
