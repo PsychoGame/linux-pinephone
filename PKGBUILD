@@ -25,9 +25,11 @@ source=("linux-$_commit.tar.gz::$url/-/archive/pine64-5.9/linux-pine64-${_commit
         'enable-hdmi-output-pinetab.patch'
         'improve-brightness.patch'
         'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
-        'megi-fix-xbd599-timings.patch'
-        'megi-fix-mipi-dsi-panel-framerate.patch'
+        'megi-add-support-for-rate-resetting-notifier.patch'
+        'megi-try-to-keep-TCON0-clock-in-CCU.patch'
         'megi-switch-parent-of-MIPI-DSI.patch'
+        'megi-fix-mipi-dsi-panel-framerate.patch'
+        'megi-fix-xbd599-timings.patch'
         'usb-musb-avoid-the-hang-in-musb_pm_runtime_check_ses.patch')
 sha256sums=('0f2a2df49cb7ff3d22294120999f082ee54380586343bfa6a3cef417ad4d8985'
             'a60c3cbd66b664b4d5464bdac2cd9f91827839749702d12eec6d1dec223ba157'
@@ -40,9 +42,11 @@ sha256sums=('0f2a2df49cb7ff3d22294120999f082ee54380586343bfa6a3cef417ad4d8985'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
             '870cf28731738129d653bfbfbe1d1928ccee1dfb38734cc9e74aa45889a58802'
             '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
-            'cedba5198f330b2b4873cc9056e6424f95660a5a519c7cc4fbbb21d6016f2710'
-            '0c99f5fdab71cf52960b9c84a0dd89658bfe2fbf2e1eabac0d267d816c8a3335'
+            '238fdaa1953b7af1904b761b829e920a073481bf25044c0359f1a5c071ddee10'
+            '60f9dacdafda0e93c4fe8cb565a34724113af65706482f1cb90ea35007e8560c'
             'ae3ef69ca6f771be66bccdb45847f421d29bb95d8cc054bcdad8e284f02f8840'
+            '0c99f5fdab71cf52960b9c84a0dd89658bfe2fbf2e1eabac0d267d816c8a3335'
+            'cedba5198f330b2b4873cc9056e6424f95660a5a519c7cc4fbbb21d6016f2710'
             '2c751e96d07fc7cb1f91c0fd27267ed17539c3ffdfa0a70958b4dc3e05d00a54')
 
 prepare() {
