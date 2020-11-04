@@ -8,7 +8,7 @@ _srcname=linux-pine64-5.9-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.1
-pkgrel=8
+pkgrel=9
 arch=('aarch64')
 url="https://gitlab.com/smaeul/linux"
 license=('GPL2')
@@ -28,6 +28,7 @@ source=("linux-$_commit.tar.gz::$url/-/archive/pine64-5.9/linux-pine64-${_commit
         'megi-switch-parent-of-MIPI-DSI.patch'
         'megi-fix-mipi-dsi-panel-framerate.patch'
         'megi-fix-xbd599-timings.patch'
+        'megi-recover-from-occasional-HW-failures.patch'
         'usb-musb-avoid-the-hang-in-musb_pm_runtime_check_ses.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-soft-scrollback-code.patch'
@@ -57,6 +58,7 @@ sha256sums=('0f2a2df49cb7ff3d22294120999f082ee54380586343bfa6a3cef417ad4d8985'
             'fe5a25c1b2a70e31d26665a2181457d472fc5b453fe42d9a17e844c681cdc0fa'
             '0c99f5fdab71cf52960b9c84a0dd89658bfe2fbf2e1eabac0d267d816c8a3335'
             'cedba5198f330b2b4873cc9056e6424f95660a5a519c7cc4fbbb21d6016f2710'
+            '672db18ca6b41d0c6256426834cb2d68d6373266c95ecad5d0a0180fa216da80'
             '2c751e96d07fc7cb1f91c0fd27267ed17539c3ffdfa0a70958b4dc3e05d00a54'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '37a221c12b40122167b0a30b5a9f2fc99e2aeb94e4db58a719c2b30171c5aeb5'
