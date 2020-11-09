@@ -4,7 +4,7 @@
 
 pkgbase=linux-pinephone
 _commit="8504203b708b17381ffdf0941656f4617ef2bc87"
-_srcname=linux-pine64-5.9-${_commit}
+_srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.3
