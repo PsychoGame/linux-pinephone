@@ -8,7 +8,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.6
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
@@ -73,11 +73,11 @@ prepare() {
   cd "${srcdir}/${_srcname}"
 
   msg2 "Applying patch: 5.9.3-4
-  patch -Np1 < "../patch-5.9.3-4
+  patch -Np1 < ../patch-5.9.3-4
   msg2 "Applying patch: 5.9.4-5
-  patch -Np1 < "../patch-5.9.4-5
+  patch -Np1 < ../patch-5.9.4-5
   msg2 "Applying patch: 5.9.5-6
-  patch -Np1 < "../patch-5.9.5-6
+  patch -Np1 < ../patch-5.9.5-6
 
   local src
   for src in "${source[@]}"; do
