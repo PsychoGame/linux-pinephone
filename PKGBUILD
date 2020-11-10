@@ -72,11 +72,11 @@ sha256sums=('dd82a24c9185bb5152e90912b3cea6881f61cd680284230056584e20e3db2cc0'
 prepare() {
   cd "${srcdir}/${_srcname}"
 
-  msg2 "Applying patch: 5.9.3-4
+  msg2 "Applying patch: 5.9.3-4"
   patch -Np1 < ../patch-5.9.3-4
-  msg2 "Applying patch: 5.9.4-5
+  msg2 "Applying patch: 5.9.4-5"
   patch -Np1 < ../patch-5.9.4-5
-  msg2 "Applying patch: 5.9.5-6
+  msg2 "Applying patch: 5.9.5-6"
   patch -Np1 < ../patch-5.9.5-6
 
   local src
