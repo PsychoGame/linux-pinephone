@@ -7,8 +7,8 @@ _commit="8504203b708b17381ffdf0941656f4617ef2bc87"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
-pkgver=5.9.6
-pkgrel=2
+pkgver=5.9.7
+pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
@@ -18,6 +18,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.3-4.xz'
         'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.4-5.xz'
         'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.5-6.xz'
+        'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.6-7.xz'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -45,6 +46,7 @@ sha256sums=('dd82a24c9185bb5152e90912b3cea6881f61cd680284230056584e20e3db2cc0'
             '9012eaf4535e39d43536b55908affe3d7e7246d239c73e7047b30cdff48f281a'
             '4e40a9a0ad93ebeba99ea54ab4b8504a412de478b5fa368c454c35ca440a29a6'
             'db9b798ac73ed93bc1f25e5c44361515b676fa7f5d473e0722a5cff3d90a3a1b'
+            '152fbcc104801bb3c51d1ef70f540ee2066e80fb12f1ecca2f499d746e79d1f8'
             '5cd8b89ab180cd3f4086051ccb62e951ea6cb5d8559d3bbc4e18306cb07c8c2c'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -78,6 +80,8 @@ prepare() {
   patch -Np1 < ../patch-5.9.4-5
   msg2 "Applying patch: 5.9.5-6"
   patch -Np1 < ../patch-5.9.5-6
+  msg2 "Applying patch: 5.9.6-7"
+  patch -Np1 < ../patch-5.9.6-7
 
   local src
   for src in "${source[@]}"; do
