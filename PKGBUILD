@@ -3,7 +3,7 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_commit="8504203b708b17381ffdf0941656f4617ef2bc87"
+_commit="635b6adffca6cf44c74db4b0f711dd55ae3fc179"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
@@ -15,10 +15,6 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
-        'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.3-4.xz'
-        'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.4-5.xz'
-        'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.5-6.xz'
-        'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.6-7.xz'
         'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.7-8.xz'
         'config'
         'linux.preset'
@@ -32,7 +28,6 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'pinetab-bluetooth.patch'
         'pinetab-accelerometer.patch'
         'camera-added-bggr-bayer-mode.patch'
-        'camera-autofocus.patch'
         'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
         'remove-v4l2-flash-pp.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
@@ -49,11 +44,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('dd82a24c9185bb5152e90912b3cea6881f61cd680284230056584e20e3db2cc0'
-            '9012eaf4535e39d43536b55908affe3d7e7246d239c73e7047b30cdff48f281a'
-            '4e40a9a0ad93ebeba99ea54ab4b8504a412de478b5fa368c454c35ca440a29a6'
-            'db9b798ac73ed93bc1f25e5c44361515b676fa7f5d473e0722a5cff3d90a3a1b'
-            '152fbcc104801bb3c51d1ef70f540ee2066e80fb12f1ecca2f499d746e79d1f8'
+sha256sums=('43d614b9c186d06b5e38e5fac354c1ea9fdc1cb1fe27ed767ad8f51726bd0256'
             'b67e2dfa2b81bc63ed0b9b4da7cd87a43ae44f71d545aa01f7affdaee9115613'
             '5cd8b89ab180cd3f4086051ccb62e951ea6cb5d8559d3bbc4e18306cb07c8c2c'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
@@ -67,7 +58,6 @@ sha256sums=('dd82a24c9185bb5152e90912b3cea6881f61cd680284230056584e20e3db2cc0'
             'dc4048106a515b3deb43c9de47674d0c99028336723e71d5df2a3897352df524'
             '0e6453bf258c34349e5cc76811d804392aaa1ef9230c343719879682aaff7515'
             'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
-            '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249'
             '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
             '6872c9d919efdbf2de567f838a2abacf9a15f3ff1c1d883a1410a1917d83f8dc'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
@@ -88,14 +78,6 @@ sha256sums=('dd82a24c9185bb5152e90912b3cea6881f61cd680284230056584e20e3db2cc0'
 prepare() {
   cd "${srcdir}/${_srcname}"
 
-  msg2 "Applying patch: 5.9.3-4"
-  patch -Np1 < ../patch-5.9.3-4
-  msg2 "Applying patch: 5.9.4-5"
-  patch -Np1 < ../patch-5.9.4-5
-  msg2 "Applying patch: 5.9.5-6"
-  patch -Np1 < ../patch-5.9.5-6
-  msg2 "Applying patch: 5.9.6-7"
-  patch -Np1 < ../patch-5.9.6-7
   msg2 "Applying patch: 5.9.7-8"
   patch -Np1 < ../patch-5.9.7-8
 
