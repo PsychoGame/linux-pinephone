@@ -7,7 +7,7 @@ _commit="8504203b708b17381ffdf0941656f4617ef2bc87"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
-pkgver=5.9.7
+pkgver=5.9.8
 pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux"
@@ -19,15 +19,22 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.4-5.xz'
         'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.5-6.xz'
         'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.6-7.xz'
+        'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.7-8.xz'
         'config'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
         'wifi-power-saving.patch'
-        'enable-jack-detection-pinetab.patch'
         'panic-led.patch'
         'enable-hdmi-output-pinetab.patch'
         'improve-brightness.patch'
+        'enable-jack-detection-pinetab.patch'
+        'pinetab-bluetooth.patch'
+        'pinetab-accelerometer.patch'
+        'camera-added-bggr-bayer-mode.patch'
+        'camera-autofocus.patch'
+        'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
+        'remove-v4l2-flash-pp.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-soft-scrollback-code.patch'
         '0001-bootsplash.patch'
@@ -47,15 +54,22 @@ sha256sums=('dd82a24c9185bb5152e90912b3cea6881f61cd680284230056584e20e3db2cc0'
             '4e40a9a0ad93ebeba99ea54ab4b8504a412de478b5fa368c454c35ca440a29a6'
             'db9b798ac73ed93bc1f25e5c44361515b676fa7f5d473e0722a5cff3d90a3a1b'
             '152fbcc104801bb3c51d1ef70f540ee2066e80fb12f1ecca2f499d746e79d1f8'
+            'b67e2dfa2b81bc63ed0b9b4da7cd87a43ae44f71d545aa01f7affdaee9115613'
             '5cd8b89ab180cd3f4086051ccb62e951ea6cb5d8559d3bbc4e18306cb07c8c2c'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
             'bb7819e9d0fd615ecc6c95ece74e5566a86e86c8711194af74bdad426e15c859'
-            '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
             '27717d53ecf945c45e03a83f1e82f82d87d5785968beccbec977f84fc9e07ea7'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
             '870cf28731738129d653bfbfbe1d1928ccee1dfb38734cc9e74aa45889a58802'
+            '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
+            'dc4048106a515b3deb43c9de47674d0c99028336723e71d5df2a3897352df524'
+            '0e6453bf258c34349e5cc76811d804392aaa1ef9230c343719879682aaff7515'
+            'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
+            '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249'
+            '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
+            '6872c9d919efdbf2de567f838a2abacf9a15f3ff1c1d883a1410a1917d83f8dc'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '37a221c12b40122167b0a30b5a9f2fc99e2aeb94e4db58a719c2b30171c5aeb5'
             '59202940d4f12bad23c194a530edc900e066866c9945e39748484a6545af96de'
@@ -82,6 +96,8 @@ prepare() {
   patch -Np1 < ../patch-5.9.5-6
   msg2 "Applying patch: 5.9.6-7"
   patch -Np1 < ../patch-5.9.6-7
+  msg2 "Applying patch: 5.9.7-8"
+  patch -Np1 < ../patch-5.9.7-8
 
   local src
   for src in "${source[@]}"; do
