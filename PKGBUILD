@@ -3,19 +3,18 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_commit="635b6adffca6cf44c74db4b0f711dd55ae3fc179"
+_commit="ae3c7e7b369a7ca632608fb8008c136eddde2487"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.8
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
-        'https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.7-8.xz'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -27,6 +26,9 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'enable-jack-detection-pinetab.patch'
         'pinetab-bluetooth.patch'
         'pinetab-accelerometer.patch'
+        'camera-autofocus.patch'
+        'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
+        'ov5640-set-default-ae-target-lower.patch'
         'camera-added-bggr-bayer-mode.patch'
         'remove-v4l2-flash-pp.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
@@ -43,8 +45,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('43d614b9c186d06b5e38e5fac354c1ea9fdc1cb1fe27ed767ad8f51726bd0256'
-            'b67e2dfa2b81bc63ed0b9b4da7cd87a43ae44f71d545aa01f7affdaee9115613'
+sha256sums=('84fea0bc48184637d6f1b2561e129cbd6debb6124dc5f11e0253ce738922dfe2'
             '5cd8b89ab180cd3f4086051ccb62e951ea6cb5d8559d3bbc4e18306cb07c8c2c'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -56,6 +57,9 @@ sha256sums=('43d614b9c186d06b5e38e5fac354c1ea9fdc1cb1fe27ed767ad8f51726bd0256'
             '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
             'dc4048106a515b3deb43c9de47674d0c99028336723e71d5df2a3897352df524'
             '0e6453bf258c34349e5cc76811d804392aaa1ef9230c343719879682aaff7515'
+            '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249'
+            '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
+            'e428aae4073e25301554c9687510cb7118439d9f0097f7050f9b48c5de232164'
             'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
             '6872c9d919efdbf2de567f838a2abacf9a15f3ff1c1d883a1410a1917d83f8dc'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
@@ -75,9 +79,6 @@ sha256sums=('43d614b9c186d06b5e38e5fac354c1ea9fdc1cb1fe27ed767ad8f51726bd0256'
 
 prepare() {
   cd "${srcdir}/${_srcname}"
-
-  msg2 "Applying patch: 5.9.7-8"
-  patch -Np1 < ../patch-5.9.7-8
 
   local src
   for src in "${source[@]}"; do
