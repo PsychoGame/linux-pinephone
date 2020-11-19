@@ -15,7 +15,7 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
-        https://cdn.kernel.org/pub/linux/kernel/v5.x/incr/patch-5.9.8-9.xz
+        "5.9.9-delta.patch"
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -45,7 +45,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
 sha256sums=('84fea0bc48184637d6f1b2561e129cbd6debb6124dc5f11e0253ce738922dfe2'
-            'dc020198275cf1d7b574dc64704eed4c3761e08e96e9946694b4ca59d5c1aa72'
+            'f624be63ea138ecba5c1e07e1fe545aeb31dbd0794dd8f876929212a0452aa9f'
             '5cd8b89ab180cd3f4086051ccb62e951ea6cb5d8559d3bbc4e18306cb07c8c2c'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -77,9 +77,6 @@ sha256sums=('84fea0bc48184637d6f1b2561e129cbd6debb6124dc5f11e0253ce738922dfe2'
 
 prepare() {
   cd "${srcdir}/${_srcname}"
-
-  msg2 "Applying patch: 5.9.8-9"
-  patch -p1 -i ../patch-5.9.8-9
 
   local src
   for src in "${source[@]}"; do
