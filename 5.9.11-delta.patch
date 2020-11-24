@@ -378,19 +378,19 @@ index b26181cf9095a..b54099b654c8a 100644
  	phy-handle = <&ext_rgmii_phy>;
  	status = "okay";
  };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
-index 7d7aad18f078b..8bf2db9dcbda0 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
-@@ -123,7 +123,7 @@
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-libretech-all-h5-cc.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-libretech-all-h5-cc.dts
+index df1b9263ad0e2..6e30a564c87f6 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-libretech-all-h5-cc.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-libretech-all-h5-cc.dts
+@@ -36,7 +36,7 @@
  	pinctrl-0 = <&emac_rgmii_pins>;
  	phy-supply = <&reg_gmac_3v3>;
  	phy-handle = <&ext_rgmii_phy>;
 -	phy-mode = "rgmii";
 +	phy-mode = "rgmii-id";
+ 	/delete-property/ allwinner,leds-active-low;
  	status = "okay";
  };
- 
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
 index cb44bfa5981fd..33ab44072e6d7 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-prime.dts
