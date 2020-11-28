@@ -3,19 +3,18 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_commit="ab81154a1a59cfb932a6a13b6ea48d148fb95804"
+_commit="6f2d95b9833e4e2395ca58056c1489fa77eb5810"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.11
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
-        "5.9.11-delta.patch"
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -30,6 +29,9 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'camera-autofocus.patch'
         'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
         'camera-added-bggr-bayer-mode.patch'
+        '0002-Bluetooth-Fix-LL-PRivacy-BLE-device-fails-to-connect.patch'
+        '0003-Bluetooth-Fix-attempting-to-set-RPA-timeout-when-unsupported.patch'
+        '0004-efivarfs-revert-fix-memory-leak-in-efivarfs_create.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-soft-scrollback-code.patch'
         '0001-bootsplash.patch'
@@ -44,8 +46,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('1a2ddfa257455b0249719ce3e7bef17e33ccb06c092c5f6ceb822ed9229e1c6a'
-            '96627fea085f198e52ba9d39b5ab1a2aa2d1aff9414b29162fbbcc8e011acabb'
+sha256sums=('80dce97db56bc180bae8dc2d640b16dfe8546cad50f247e3f0a191ec22ad0c27'
             '5cd8b89ab180cd3f4086051ccb62e951ea6cb5d8559d3bbc4e18306cb07c8c2c'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -60,6 +61,9 @@ sha256sums=('1a2ddfa257455b0249719ce3e7bef17e33ccb06c092c5f6ceb822ed9229e1c6a'
             '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249'
             '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
             'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
+            '3c1c63194dc808b63166646d71c9fc2e690605178527bdd5528084613990207a'
+            'e216346f7c7761a53b76dea0638898e52aac9e4527a64893c9dfa9936b3c5a0d'
+            '2fd5ce56d3272b05cdd3e4dc3ebc3deb8b0f1c7893d342f5ae295bf7213cced5'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '37a221c12b40122167b0a30b5a9f2fc99e2aeb94e4db58a719c2b30171c5aeb5'
             '59202940d4f12bad23c194a530edc900e066866c9945e39748484a6545af96de'
