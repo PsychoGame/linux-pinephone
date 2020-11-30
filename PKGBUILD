@@ -8,7 +8,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.9.11
-pkgrel=2
+pkgrel=3
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
@@ -29,6 +29,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'camera-autofocus.patch'
         'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
         'camera-added-bggr-bayer-mode.patch'
+        'drm-lima-add-LIMA_BO_FLAG_FORCE_VA.patch'
         '0002-Bluetooth-Fix-LL-PRivacy-BLE-device-fails-to-connect.patch'
         '0003-Bluetooth-Fix-attempting-to-set-RPA-timeout-when-unsupported.patch'
         '0004-efivarfs-revert-fix-memory-leak-in-efivarfs_create.patch'
