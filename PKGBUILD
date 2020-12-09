@@ -7,7 +7,7 @@ _commit="db16c398a809ac303e7693f2f46ad20fad11d39a"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
-pkgver=5.10rc
+pkgver=5.10rc6
 pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux"
@@ -31,7 +31,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0002-Bluetooth-Fix-LL-PRivacy-BLE-device-fails-to-connect.patch'
         '0003-Bluetooth-Fix-attempting-to-set-RPA-timeout-when-unsupported.patch')
 sha256sums=('68cbf1e3dda13252d3e6af370e6dbf8920a57b840f78e7ee8a7290c90e432f6f'
-            '5cd8b89ab180cd3f4086051ccb62e951ea6cb5d8559d3bbc4e18306cb07c8c2c'
+            'c89599af768586a49e0b7b3d4aaee13ac7f3a8920836ad748531e6e51fee8c49'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
