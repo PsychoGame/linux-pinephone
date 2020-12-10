@@ -8,7 +8,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.10rc6
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
@@ -29,9 +29,24 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
         'camera-added-bggr-bayer-mode.patch'
         '0002-Bluetooth-Fix-LL-PRivacy-BLE-device-fails-to-connect.patch'
-        '0003-Bluetooth-Fix-attempting-to-set-RPA-timeout-when-unsupported.patch')
+        '0003-Bluetooth-Fix-attempting-to-set-RPA-timeout-when-unsupported.patch'
+        '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
+        '0002-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
+        '0003-revert-fbcon-remove-soft-scrollback-code.patch'
+        '0001-bootsplash.patch'
+        '0002-bootsplash.patch'
+        '0003-bootsplash.patch'
+        '0004-bootsplash.patch'
+        '0005-bootsplash.patch'
+        '0006-bootsplash.patch'
+        '0007-bootsplash.patch'
+        '0008-bootsplash.patch'
+        '0009-bootsplash.patch'
+        '0010-bootsplash.patch'
+        '0011-bootsplash.patch'
+        '0012-bootsplash.patch')
 sha256sums=('68cbf1e3dda13252d3e6af370e6dbf8920a57b840f78e7ee8a7290c90e432f6f'
-            'c89599af768586a49e0b7b3d4aaee13ac7f3a8920836ad748531e6e51fee8c49'
+            'b6c7659140f381dac5f33049cf973cf189178d8003daf086e54aebc7665dced5'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
@@ -45,7 +60,22 @@ sha256sums=('68cbf1e3dda13252d3e6af370e6dbf8920a57b840f78e7ee8a7290c90e432f6f'
             '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
             'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
             '3c1c63194dc808b63166646d71c9fc2e690605178527bdd5528084613990207a'
-            'e216346f7c7761a53b76dea0638898e52aac9e4527a64893c9dfa9936b3c5a0d')
+            'e216346f7c7761a53b76dea0638898e52aac9e4527a64893c9dfa9936b3c5a0d'
+            'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
+            '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
+            '37a221c12b40122167b0a30b5a9f2fc99e2aeb94e4db58a719c2b30171c5aeb5'
+            '59202940d4f12bad23c194a530edc900e066866c9945e39748484a6545af96de'
+            'e096b127a5208f56d368d2cb938933454d7200d70c86b763aa22c38e0ddb8717'
+            '8c1c880f2caa9c7ae43281a35410203887ea8eae750fe8d360d0c8bf80fcc6e0'
+            '1144d51e5eb980fceeec16004f3645ed04a60fac9e0c7cf88a15c5c1e7a4b89e'
+            'dd4b69def2efacf4a6c442202ad5cb93d492c03886d7c61de87696e5a83e2846'
+            '028b07f0c954f70ca37237b62e04103e81f7c658bb8bd65d7d3c2ace301297dc'
+            'c8b0cb231659d33c3cfaed4b1f8d7c8305ab170bdd4c77fce85270d7b6a68000'
+            '8dbb5ab3cb99e48d97d4e2f2e3df5d0de66f3721b4f7fd94a708089f53245c77'
+            'a7aefeacf22c600fafd9e040a985a913643095db7272c296b77a0a651c6a140a'
+            'e9f22cbb542591087d2d66dc6dc912b1434330ba3cd13d2df741d869a2c31e89'
+            '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
+            '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
