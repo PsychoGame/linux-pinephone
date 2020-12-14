@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 5.10.0-rc6-1 Kernel Configuration
+# Linux/arm64 5.10.0-3 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="gcc (GCC) 10.2.0"
 CONFIG_CC_IS_GCC=y
@@ -3510,7 +3510,7 @@ CONFIG_DRM_DISPLAY_CONNECTOR=m
 # CONFIG_DRM_SIL_SII8620 is not set
 # CONFIG_DRM_SII902X is not set
 # CONFIG_DRM_SII9234 is not set
-CONFIG_DRM_SIMPLE_BRIDGE=m
+# CONFIG_DRM_SIMPLE_BRIDGE is not set
 # CONFIG_DRM_THINE_THC63LVD1024 is not set
 # CONFIG_DRM_TOSHIBA_TC358762 is not set
 # CONFIG_DRM_TOSHIBA_TC358764 is not set
@@ -3569,23 +3569,23 @@ CONFIG_FB_SYS_IMAGEBLIT=y
 # CONFIG_FB_FOREIGN_ENDIAN is not set
 CONFIG_FB_SYS_FOPS=y
 CONFIG_FB_DEFERRED_IO=y
-CONFIG_FB_MODE_HELPERS=y
+# CONFIG_FB_MODE_HELPERS is not set
 # CONFIG_FB_TILEBLITTING is not set
 
 #
 # Frame buffer hardware drivers
 #
-CONFIG_FB_ARMCLCD=y
+# CONFIG_FB_ARMCLCD is not set
 # CONFIG_FB_OPENCORES is not set
 # CONFIG_FB_S1D13XXX is not set
 # CONFIG_FB_SUN5I_EINK is not set
 # CONFIG_FB_SMSCUFX is not set
-CONFIG_FB_UDL=m
+# CONFIG_FB_UDL is not set
 # CONFIG_FB_IBM_GXT4500 is not set
 # CONFIG_FB_VIRTUAL is not set
-CONFIG_XEN_FBDEV_FRONTEND=y
+# CONFIG_XEN_FBDEV_FRONTEND is not set
 # CONFIG_FB_METRONOME is not set
-CONFIG_FB_SIMPLE=y
+# CONFIG_FB_SIMPLE is not set
 # CONFIG_FB_SSD1307 is not set
 # end of Frame buffer Devices
 
