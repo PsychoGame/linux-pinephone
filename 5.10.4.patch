@@ -491,39 +491,6 @@ index 4d1707388d941..312428d83eedb 100644
  	vld1.8		{q4-q5}, [r1]!
  	vld1.8		{q6}, [r1]!
  	vld1.8		{q15}, [r1]!
-diff --git a/arch/arm/crypto/aes-neonbs-glue.c b/arch/arm/crypto/aes-neonbs-glue.c
-index bda8bf17631e1..f70af1d0514b9 100644
---- a/arch/arm/crypto/aes-neonbs-glue.c
-+++ b/arch/arm/crypto/aes-neonbs-glue.c
-@@ -19,7 +19,7 @@ MODULE_AUTHOR("Ard Biesheuvel <ard.biesheuvel@linaro.org>");
- MODULE_LICENSE("GPL v2");
- 
- MODULE_ALIAS_CRYPTO("ecb(aes)");
--MODULE_ALIAS_CRYPTO("cbc(aes)");
-+MODULE_ALIAS_CRYPTO("cbc(aes)-all");
- MODULE_ALIAS_CRYPTO("ctr(aes)");
- MODULE_ALIAS_CRYPTO("xts(aes)");
- 
-@@ -191,7 +191,8 @@ static int cbc_init(struct crypto_skcipher *tfm)
- 	struct aesbs_cbc_ctx *ctx = crypto_skcipher_ctx(tfm);
- 	unsigned int reqsize;
- 
--	ctx->enc_tfm = crypto_alloc_skcipher("cbc(aes)", 0, CRYPTO_ALG_ASYNC);
-+	ctx->enc_tfm = crypto_alloc_skcipher("cbc(aes)", 0, CRYPTO_ALG_ASYNC |
-+					     CRYPTO_ALG_NEED_FALLBACK);
- 	if (IS_ERR(ctx->enc_tfm))
- 		return PTR_ERR(ctx->enc_tfm);
- 
-@@ -441,7 +442,8 @@ static struct skcipher_alg aes_algs[] = { {
- 	.base.cra_blocksize	= AES_BLOCK_SIZE,
- 	.base.cra_ctxsize	= sizeof(struct aesbs_cbc_ctx),
- 	.base.cra_module	= THIS_MODULE,
--	.base.cra_flags		= CRYPTO_ALG_INTERNAL,
-+	.base.cra_flags		= CRYPTO_ALG_INTERNAL |
-+				  CRYPTO_ALG_NEED_FALLBACK,
- 
- 	.min_keysize		= AES_MIN_KEY_SIZE,
- 	.max_keysize		= AES_MAX_KEY_SIZE,
 diff --git a/arch/arm/kernel/entry-armv.S b/arch/arm/kernel/entry-armv.S
 index 55a47df047738..1c9e6d1452c5b 100644
 --- a/arch/arm/kernel/entry-armv.S
@@ -13778,24 +13745,6 @@ index 7551253ada32b..bf3f14fb5f244 100644
  
  	platform_set_drvdata(pdev, lp3943_pwm);
  
-diff --git a/drivers/pwm/pwm-sun4i.c b/drivers/pwm/pwm-sun4i.c
-index 38a4c5c1317b2..482d5b9cec1fb 100644
---- a/drivers/pwm/pwm-sun4i.c
-+++ b/drivers/pwm/pwm-sun4i.c
-@@ -294,12 +294,8 @@ static int sun4i_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 
- 	ctrl |= BIT_CH(PWM_CLK_GATING, pwm->hwpwm);
- 
--	if (state->enabled) {
-+	if (state->enabled)
- 		ctrl |= BIT_CH(PWM_EN, pwm->hwpwm);
--	} else {
--		ctrl &= ~BIT_CH(PWM_EN, pwm->hwpwm);
--		ctrl &= ~BIT_CH(PWM_CLK_GATING, pwm->hwpwm);
--	}
- 
- 	sun4i_pwm_writel(sun4i_pwm, ctrl, PWM_CTRL_REG);
- 
 diff --git a/drivers/pwm/pwm-zx.c b/drivers/pwm/pwm-zx.c
 index e2c21cc34a96a..3763ce5311ac2 100644
 --- a/drivers/pwm/pwm-zx.c
@@ -23272,24 +23221,6 @@ index a066e08860cbf..5bfc2f8b13b90 100644
  	help
  	  This option is not user-selectable but automagically handled by
  	  'select' statements at a higher level
-diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-index f23ff29e7c1d3..a994b5cf87b31 100644
---- a/sound/soc/sunxi/sun4i-i2s.c
-+++ b/sound/soc/sunxi/sun4i-i2s.c
-@@ -450,11 +450,11 @@ static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
- 	switch (i2s->format & SND_SOC_DAIFMT_FORMAT_MASK) {
- 	case SND_SOC_DAIFMT_DSP_A:
- 	case SND_SOC_DAIFMT_DSP_B:
--	case SND_SOC_DAIFMT_LEFT_J:
--	case SND_SOC_DAIFMT_RIGHT_J:
- 		lrck_period = params_physical_width(params) * slots;
- 		break;
- 
-+	case SND_SOC_DAIFMT_LEFT_J:
-+	case SND_SOC_DAIFMT_RIGHT_J:
- 	case SND_SOC_DAIFMT_I2S:
- 		lrck_period = params_physical_width(params);
- 		break;
 diff --git a/sound/usb/card.c b/sound/usb/card.c
 index 4457214a3ae62..57d6d4ff01e08 100644
 --- a/sound/usb/card.c
