@@ -7,14 +7,15 @@ _commit="6cbe584b73a5dcb00476b4c46dcf6ab480fc7e29"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
-pkgver=5.10.4
-pkgrel=2
+pkgver=5.10.5
+pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
+        '5.10.5.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -45,6 +46,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
 sha256sums=('af0e460505492de6d6f413583a94e1f2e74a0d9550dab494e94a701ac67ae6e3'
+            '10743e1dcdd6e28e72712651ad91355ca0e0bf8b2173947e2e36e2fbe08fdde7'
             'bdc004023ec2d0107ee89641481eb7e27b1b090765e36b4456d9e26ba292e650'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
