@@ -142,9 +142,9 @@ _package() {
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7'
            'rtl8723bt-firmware-megi' 'ov5640-firmware')
   optdepends=('crda: to set the correct wireless channels of your country')
-  provides=('kernel26' "linux=${pkgver}")
+  provides=('kernel26' "linux=${pkgver}" "linux-pinephone=${pkgver}")
   replaces=('linux-armv8-rc')
-  conflicts=('linux')
+  conflicts=('linux' 'linux-pinephone')
   backup=("etc/mkinitcpio.d/${pkgbase}.preset")
   install=linux-pinephone.install
 
@@ -199,8 +199,8 @@ _package() {
 
 _package-headers() {
   pkgdesc="Header files and scripts for building modules for linux kernel - ${_desc}"
-  provides=("linux-headers=${pkgver}")
-  conflicts=('linux-headers')
+  provides=("linux-headers=${pkgver}" "linux-pinephone-headers=${pkgver}")
+  conflicts=('linux-headers' 'linux-pinephone-headers')
   cd "${srcdir}/${_srcname}"
   local _builddir="${pkgdir}/usr/lib/modules/${_kernver}/build"
 
