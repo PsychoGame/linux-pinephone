@@ -2,7 +2,7 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-pkgbase=linux-pinephone
+pkgbase=linux-pinephone-next
 _commit="6cbe584b73a5dcb00476b4c46dcf6ab480fc7e29"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
@@ -31,6 +31,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'camera-autofocus.patch'
         'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
         'camera-added-bggr-bayer-mode.patch'
+        'dts-pinephone-drop-modem-power-node.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
         '0003-revert-fbcon-remove-soft-scrollback-code.patch'
@@ -50,7 +51,7 @@ sha256sums=('af0e460505492de6d6f413583a94e1f2e74a0d9550dab494e94a701ac67ae6e3'
             '10743e1dcdd6e28e72712651ad91355ca0e0bf8b2173947e2e36e2fbe08fdde7'
             '3991727b40a9b040b1d0e92a386ab4f9ab05920a8ace4587c6efcf703f8a24c4'
             '29171b4b3394f11184c2a3482c84ce3cabde1dfedbbf702cd5c4263f2f9c59a0'
-            'bdc004023ec2d0107ee89641481eb7e27b1b090765e36b4456d9e26ba292e650'
+            'ba8755ac03e230ef080648b59ba83f0edc832887eb1c6ba3d3861933356719bc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
@@ -63,6 +64,7 @@ sha256sums=('af0e460505492de6d6f413583a94e1f2e74a0d9550dab494e94a701ac67ae6e3'
             '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249'
             '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
             'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
+            'c35c2e5415e7d2acd7b96d79a01efe8a5996daea35a77dc67406a55616060670'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '37a221c12b40122167b0a30b5a9f2fc99e2aeb94e4db58a719c2b30171c5aeb5'
