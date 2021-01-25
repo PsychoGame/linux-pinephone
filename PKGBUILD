@@ -3,19 +3,18 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_commit="483410ac7339ad59c9b340847279bd1eaed26c8a"
+_commit="5a93114de564ff6ed2243e4668fe2d79f09f4184"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.10.10
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
-        '5.10.10.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -28,7 +27,6 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'pinetab-accelerometer.patch'
         'camera-autofocus.patch'
         'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
-        'camera-added-bggr-bayer-mode.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
         '0003-revert-fbcon-remove-soft-scrollback-code.patch'
@@ -44,8 +42,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('2d7aedd794755ad3b96a5c0fb34a010c39dae75b6d66077192f0c37eb9b80735'
-            '4647ee09466217280ad52f0b7814a94b28ab5fef2fbba767f78edc9ff212beec'
+sha256sums=('593e5afc741ff7f18aa26436d8f1185f18a1ea0fdb7b0582830c9aa69c44c32d'
             'bdc004023ec2d0107ee89641481eb7e27b1b090765e36b4456d9e26ba292e650'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -58,7 +55,6 @@ sha256sums=('2d7aedd794755ad3b96a5c0fb34a010c39dae75b6d66077192f0c37eb9b80735'
             '0e6453bf258c34349e5cc76811d804392aaa1ef9230c343719879682aaff7515'
             '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249'
             '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
-            'dfb340a8e8d47336a93c3183e1978c21a14c68c3d4aa9ac48e39eb9b5d8444d7'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '37a221c12b40122167b0a30b5a9f2fc99e2aeb94e4db58a719c2b30171c5aeb5'
