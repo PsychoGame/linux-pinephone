@@ -2,12 +2,12 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-pkgbase=linux-pinephone-next
-_commit="5a93114de564ff6ed2243e4668fe2d79f09f4184"
+pkgbase=linux-pinephone
+_commit="4c4fac23da8b64102ce2e666e294d32505363c9f"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
-pkgver=5.10.11
+pkgver=5.10.12
 pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux"
@@ -15,7 +15,7 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
-        '5.10.11.patch'
+        '5.10.12.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -44,8 +44,8 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('593e5afc741ff7f18aa26436d8f1185f18a1ea0fdb7b0582830c9aa69c44c32d'
-            '210e52d7a3d1ba1f2c3721f8c46d981f33c5ff24512a2b0e252bc5ad4f7d88ac'
+sha256sums=('51c17da985692bcacf97b598e93f81abcfc36be454401db95a170c4c13354abb'
+            '7f996a9cb5d744431fa281ecf995a20f0ff239648aee985b8b8ab311aaec8041'
             'ba8755ac03e230ef080648b59ba83f0edc832887eb1c6ba3d3861933356719bc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -134,11 +134,11 @@ build() {
 _package() {
   pkgdesc="The Linux Kernel and modules - ${_desc}"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7'
-           'rtl8723bt-firmware-megi' 'ov5640-firmware')
+           'rtl8723bt-firmware-megi' 'ov5640-firmware' 'eg25-manager')
   optdepends=('crda: to set the correct wireless channels of your country')
-  provides=('kernel26' "linux=${pkgver}" "linux-pinephone=${pkgver}")
+  provides=('kernel26' "linux=${pkgver}")
   replaces=('linux-armv8-rc')
-  conflicts=('linux' 'linux-pinephone')
+  conflicts=('linux')
   backup=("etc/mkinitcpio.d/${pkgbase}.preset")
   install=linux-pinephone.install
 
