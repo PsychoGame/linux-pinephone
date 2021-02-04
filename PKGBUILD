@@ -3,11 +3,11 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_commit="4c4fac23da8b64102ce2e666e294d32505363c9f"
+_commit="34395726b53257d8eec3ca2ba6766fe1d6b6e3b2"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
-pkgver=5.10.12
+pkgver=5.10.13
 pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux"
@@ -15,7 +15,6 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
-        '5.10.12.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -44,8 +43,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('51c17da985692bcacf97b598e93f81abcfc36be454401db95a170c4c13354abb'
-            '7f996a9cb5d744431fa281ecf995a20f0ff239648aee985b8b8ab311aaec8041'
+sha256sums=('3b022f961a51f2ee73598f6d56c2f3f50ed91df422cca02a701b20505f9952e2'
             'ba8755ac03e230ef080648b59ba83f0edc832887eb1c6ba3d3861933356719bc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
