@@ -8,7 +8,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.10.13
-pkgrel=1
+pkgrel=1.0
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
@@ -132,7 +132,7 @@ build() {
 _package() {
   pkgdesc="The Linux Kernel and modules - ${_desc}"
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7'
-           'rtl8723bt-firmware-megi' 'ov5640-firmware' 'eg25-manager')
+           'rtl8723bt-firmware-megi' 'ov5640-firmware')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=('kernel26' "linux=${pkgver}")
   replaces=('linux-armv8-rc')
