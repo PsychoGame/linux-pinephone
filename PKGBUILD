@@ -7,7 +7,7 @@ _commit="34395726b53257d8eec3ca2ba6766fe1d6b6e3b2"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
-pkgver=5.10.15
+pkgver=5.10.16
 pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux"
@@ -17,6 +17,7 @@ options=('!strip')
 source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         5.10.14.patch
         5.10.15.patch
+        5.10.16.patch        
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -48,6 +49,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
 sha256sums=('3b022f961a51f2ee73598f6d56c2f3f50ed91df422cca02a701b20505f9952e2'
             '838f6d5fca0fac1a2f8ff6ccd7c5c1699d9f70e55aa70bc7a71440ed3847d5dd'
             '66d1e71f67ec43d12f350e3199cc4661c2804fb71575ec476ad8236375efb1bd'
+            '93171092f42b4d5bb190f81f75e8facb4820e26a8ef1df704215377f2eb9743a'
             'ba8755ac03e230ef080648b59ba83f0edc832887eb1c6ba3d3861933356719bc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
