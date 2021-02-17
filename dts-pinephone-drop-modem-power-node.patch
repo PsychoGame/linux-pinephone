@@ -58,8 +58,17 @@ diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts b/arch/a
 index 95a880fdc9ce..5f3b6a1a142f 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts
-@@ -109,29 +109,6 @@ &reg_drivevbus {
+@@ -109,34 +109,15 @@
  	status = "okay";
+ };
+ 
++&ring_indicator {
++	gpios = <&pio 1 2 GPIO_ACTIVE_LOW>; /* PB2 */
++};
++
+ &sgm3140 {
+ 	enable-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>; /* PD24 */
+ 	flash-gpios = <&pio 2 3 GPIO_ACTIVE_HIGH>; /* PC3 */
  };
  
 -&uart3 {
@@ -88,23 +97,21 @@ index 95a880fdc9ce..5f3b6a1a142f 100644
  &usbphy {
  	usb-role-switch;
  
-@@ -142,6 +119,10 @@ usb0_drd_sw: endpoint {
- 	};
- };
- 
-+&ring_indicator {
-+	gpios = <&pio 1 2 GPIO_ACTIVE_LOW>; /* PB2 */
-+};
-+
- &sgm3140 {
- 	flash-gpios = <&pio 2 3 GPIO_ACTIVE_HIGH>; /* PC3 */
- 	enable-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>; /* PD24 */
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dts
 index 23ba72508cfc..889841ca5b8a 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dts
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dts
-@@ -93,29 +93,6 @@ &reg_anx1v0 {
+@@ -101,34 +101,15 @@
  	enable-active-high;
+ };
+ 
++&ring_indicator {
++	gpios = <&r_pio 0 6 GPIO_ACTIVE_LOW>; /* PL6 */
++};
++
+ &sgm3140 {
+ 	enable-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>; /* PD24 */
+ 	flash-gpios = <&pio 2 3 GPIO_ACTIVE_HIGH>; /* PC3 */
  };
  
 -&uart3 {
@@ -133,17 +140,6 @@ index 23ba72508cfc..889841ca5b8a 100644
  &usbphy {
  	usb-role-switch;
  
-@@ -126,6 +103,10 @@ usb0_drd_sw: endpoint {
- 	};
- };
- 
-+&ring_indicator {
-+	gpios = <&r_pio 0 6 GPIO_ACTIVE_LOW>; /* PL6 */
-+};
-+
- &sgm3140 {
- 	flash-gpios = <&pio 2 3 GPIO_ACTIVE_HIGH>; /* PC3 */
- 	enable-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>; /* PD24 */
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
 index 02d82980cf39..979d01de8d84 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
