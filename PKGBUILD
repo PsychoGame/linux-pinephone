@@ -45,7 +45,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
 sha256sums=('cddd2984ae0f707d462f69dfaaa585e3eebae395cbe375f7c837a7bc16a52236'
-            'ba8755ac03e230ef080648b59ba83f0edc832887eb1c6ba3d3861933356719bc'
+            '1ef137c7ca19bbc0e4591d95118f6f82bf92a21f294522e6a89e985188ab9fc2'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
