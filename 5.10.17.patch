@@ -1818,6 +1818,7 @@ index cfbf4e6c16799..ee555318e3c2f 100644
 +	bool	polarity_in_ch0; /* some tcon1 channels have polarity bits in tcon0 pol register */
  	bool	clk_kept_by_ccu; /* On A64 we rely on CCU to keep TCON0 clock stable */
  	u8	dclk_min_div;	/* minimum divider for TCON0 DCLK */
+ 
 diff --git a/drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c b/drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c
 index 92add2cef2e7d..bbdfd5e26ec88 100644
 --- a/drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c
