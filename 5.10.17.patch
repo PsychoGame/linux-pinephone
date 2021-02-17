@@ -1799,7 +1799,7 @@ diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.h b/drivers/gpu/drm/sun4i/sun4i_tc
 index cfbf4e6c16799..ee555318e3c2f 100644
 --- a/drivers/gpu/drm/sun4i/sun4i_tcon.h
 +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.h
-@@ -153,6 +153,11 @@
+@@ -154,6 +154,11 @@
  #define SUN4I_TCON1_BASIC5_V_SYNC(height)		(((height) - 1) & 0x3ff)
  
  #define SUN4I_TCON1_IO_POL_REG			0xf0
@@ -1811,14 +1811,13 @@ index cfbf4e6c16799..ee555318e3c2f 100644
  #define SUN4I_TCON1_IO_TRI_REG			0xf4
  
  #define SUN4I_TCON_ECC_FIFO_REG			0xf8
-@@ -235,6 +240,7 @@ struct sun4i_tcon_quirks {
+@@ -242,6 +247,7 @@ struct sun4i_tcon_quirks {
  	bool	needs_de_be_mux; /* sun6i needs mux to select backend */
  	bool    needs_edp_reset; /* a80 edp reset needed for tcon0 access */
  	bool	supports_lvds;   /* Does the TCON support an LVDS output? */
 +	bool	polarity_in_ch0; /* some tcon1 channels have polarity bits in tcon0 pol register */
+ 	bool	clk_kept_by_ccu; /* On A64 we rely on CCU to keep TCON0 clock stable */
  	u8	dclk_min_div;	/* minimum divider for TCON0 DCLK */
- 
- 	/* callback to handle tcon muxing options */
 diff --git a/drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c b/drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c
 index 92add2cef2e7d..bbdfd5e26ec88 100644
 --- a/drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c
