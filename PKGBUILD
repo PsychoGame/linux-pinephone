@@ -8,7 +8,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.11.0
-pkgrel=0
+pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
@@ -29,6 +29,8 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
         'dts-pinephone-drop-modem-power-node.patch'
         'dts-headphone-jack-detection.patch'
+        '0107-quirk-kernel-org-bug-210681-firmware_rome_error.patch'
+        '0003-Bluetooth-btusb.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
         '0003-revert-fbcon-remove-soft-scrollback-code.patch'
@@ -59,6 +61,8 @@ sha256sums=('cddd2984ae0f707d462f69dfaaa585e3eebae395cbe375f7c837a7bc16a52236'
             '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
             '1dc72e9f4c74447555053d0146edc58076067827a7bbe67da5e979d493168484'
             '96a115db9a059211fdabce2cdfa2c781c3e2b0aea4ed58041481409ef0b33a95'
+            '5e804e1f241ce542f3f0e83d274ede6aa4b0539e510fb9376f8106e8732ce69b'
+            '2e00df872af80147b73a205184b0abf8c63153308464fef63bd3c77166b5f9bf'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '37a221c12b40122167b0a30b5a9f2fc99e2aeb94e4db58a719c2b30171c5aeb5'
