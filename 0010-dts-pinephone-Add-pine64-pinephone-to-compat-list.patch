@@ -48,9 +48,9 @@ index 23ba72508..710493186 100644
  	model = "Pine64 PinePhone (1.2)";
 -	compatible = "pine64,pinephone-1.2", "allwinner,sun50i-a64";
 +	compatible = "pine64,pinephone-1.2", "pine64,pinephone", "allwinner,sun50i-a64";
- };
  
- &axp803 {
+ 	wifi_pwrseq: wifi-pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
 -- 
 2.26.2
 
