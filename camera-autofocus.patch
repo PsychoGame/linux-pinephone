@@ -1,4 +1,4 @@
-From 4ff393c2bf25a3be0464c85696f6501a701bbf9c Mon Sep 17 00:00:00 2001
+From c2ea6ff2636e4e2bc88244c57197318b3d9d806b Mon Sep 17 00:00:00 2001
 From: Martijn Braam <martijn@brixit.nl>
 Date: Mon, 28 Sep 2020 14:26:11 +0200
 Subject: [PATCH] media: ov5640: Implement autofocus
@@ -11,11 +11,11 @@ this at least makes it possible to focus on the center of the sensor.
 
 Signed-off-by: Martijn Braam <martijn@brixit.nl>
 ---
- drivers/media/i2c/ov5640.c | 273 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 273 insertions(+)
+ drivers/media/i2c/ov5640.c | 254 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 254 insertions(+)
 
 diff --git a/drivers/media/i2c/ov5640.c b/drivers/media/i2c/ov5640.c
-index 7764e755bd05..65ab69f6b71a 100644
+index 16ecde24a192..d90fc35e8503 100644
 --- a/drivers/media/i2c/ov5640.c
 +++ b/drivers/media/i2c/ov5640.c
 @@ -9,6 +9,7 @@
@@ -37,8 +37,8 @@ index 7764e755bd05..65ab69f6b71a 100644
 +#define OV5640_REG_SYS_CLOCK_ENABLE01	0x3005
  #define OV5640_REG_SYS_CLOCK_ENABLE02	0x3006
  #define OV5640_REG_SYS_CTRL0		0x3008
- #define OV5640_REG_SYS_CTRL0_SW_PWDN	0x42
-@@ -41,6 +46,14 @@
+ #define OV5640_REG_CHIP_ID		0x300a
+@@ -39,6 +44,14 @@
  #define OV5640_REG_PAD_OUTPUT_ENABLE01	0x3017
  #define OV5640_REG_PAD_OUTPUT_ENABLE02	0x3018
  #define OV5640_REG_PAD_OUTPUT00		0x3019
@@ -53,7 +53,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  #define OV5640_REG_SYSTEM_CONTROL1	0x302e
  #define OV5640_REG_SC_PLL_CTRL0		0x3034
  #define OV5640_REG_SC_PLL_CTRL1		0x3035
-@@ -59,6 +72,7 @@
+@@ -57,6 +70,7 @@
  #define OV5640_REG_AEC_PK_MANUAL	0x3503
  #define OV5640_REG_AEC_PK_REAL_GAIN	0x350a
  #define OV5640_REG_AEC_PK_VTS		0x350c
@@ -61,7 +61,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  #define OV5640_REG_TIMING_DVPHO		0x3808
  #define OV5640_REG_TIMING_DVPVO		0x380a
  #define OV5640_REG_TIMING_HTS		0x380c
-@@ -96,6 +110,20 @@
+@@ -93,6 +107,20 @@
  #define OV5640_REG_SDE_CTRL4		0x5584
  #define OV5640_REG_SDE_CTRL5		0x5585
  #define OV5640_REG_AVG_READOUT		0x56a1
@@ -81,8 +81,8 @@ index 7764e755bd05..65ab69f6b71a 100644
 +#define OV5640_FW_CMD_DEFAULT_ZONES	0x80
  
  enum ov5640_mode_id {
- 	OV5640_MODE_QQVGA_160_120 = 0,
-@@ -220,6 +248,12 @@ struct ov5640_ctrls {
+ 	OV5640_MODE_QCIF_176_144 = 0,
+@@ -216,6 +244,12 @@ struct ov5640_ctrls {
  		struct v4l2_ctrl *auto_gain;
  		struct v4l2_ctrl *gain;
  	};
@@ -95,7 +95,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  	struct v4l2_ctrl *brightness;
  	struct v4l2_ctrl *light_freq;
  	struct v4l2_ctrl *saturation;
-@@ -263,6 +297,8 @@ struct ov5640_dev {
+@@ -259,6 +293,8 @@ struct ov5640_dev {
  
  	bool pending_mode_change;
  	bool streaming;
@@ -104,7 +104,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  };
  
  static inline struct ov5640_dev *to_ov5640_dev(struct v4l2_subdev *sd)
-@@ -1927,6 +1963,118 @@ static void ov5640_reset(struct ov5640_dev *sensor)
+@@ -1982,6 +2018,99 @@ static void ov5640_reset(struct ov5640_dev *sensor)
  	usleep_range(20000, 25000);
  }
  
@@ -139,33 +139,14 @@ index 7764e755bd05..65ab69f6b71a 100644
 +	ov5640_write_reg(sensor, OV5640_REG_FW_STATUS, 0x7f);
 +
 +	// Start AF MCU
-+	ret = ov5640_write_reg(sensor, OV5640_REG_SYS_RESET00, 0x00);
++	ov5640_write_reg(sensor, OV5640_REG_SYS_RESET00, 0x00);
 +	if (ret)
 +		return ret;
 +
 +	dev_info(&client->dev, "firmware upload success\n");
 +
 +	// Wait for firmware to be ready
-+	for (i = 0; i < 5; i++) {
-+		ret = ov5640_read_reg(sensor, OV5640_REG_FW_STATUS, &fw_status);
-+		if (fw_status == OV5640_FW_STATUS_S_IDLE) {
-+			dev_info(&client->dev, "fw started after %d ms\n", i * 50);
-+			return ret;
-+		}
-+		msleep(50);
-+	}
-+	dev_err(&client->dev, "uploaded firmware didn't start, got to 0x%x, retrying...\n", fw_status);
-+
-+	// Putting MCU in reset state
-+	ret = ov5640_write_reg(sensor, OV5640_REG_SYS_RESET00, 0x20);
-+	if (ret)
-+		return ret;
-+	// Start AF MCU
-+	ret = ov5640_write_reg(sensor, OV5640_REG_SYS_RESET00, 0x00);
-+	if (ret)
-+		return ret;
-+	// Wait for firmware to be ready
-+	for (i = 0; i < 5; i++) {
++	for (i = 0; i < 100; i++) {
 +		ret = ov5640_read_reg(sensor, OV5640_REG_FW_STATUS, &fw_status);
 +		if (fw_status == OV5640_FW_STATUS_S_IDLE) {
 +			dev_info(&client->dev, "fw started after %d ms\n", i * 50);
@@ -223,7 +204,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  static int ov5640_set_power_on(struct ov5640_dev *sensor)
  {
  	struct i2c_client *client = sensor->i2c_client;
-@@ -1948,6 +2096,8 @@ static int ov5640_set_power_on(struct ov5640_dev *sensor)
+@@ -2003,6 +2132,8 @@ static int ov5640_set_power_on(struct ov5640_dev *sensor)
  		goto xclk_off;
  	}
  
@@ -232,7 +213,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  	ov5640_reset(sensor);
  	ov5640_power(sensor, true);
  
-@@ -2463,6 +2613,35 @@ static int ov5640_set_framefmt(struct ov5640_dev *sensor,
+@@ -2392,6 +2523,35 @@ static int ov5640_set_framefmt(struct ov5640_dev *sensor,
  			      is_jpeg ? (BIT(5) | BIT(3)) : 0);
  }
  
@@ -268,7 +249,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  /*
   * Sensor Controls.
   */
-@@ -2579,6 +2758,41 @@ static int ov5640_set_ctrl_exposure(struct ov5640_dev *sensor,
+@@ -2508,6 +2668,41 @@ static int ov5640_set_ctrl_exposure(struct ov5640_dev *sensor,
  	return ret;
  }
  
@@ -281,7 +262,7 @@ index 7764e755bd05..65ab69f6b71a 100644
 +	if (ret) {
 +		dev_err(&client->dev, "%s: no autofocus firmware loaded\n",
 +			__func__);
-+		return 0;
++		return ret;
 +	}
 +
 +	if (command == OV5640_FW_CMD_RELEASE_FOCUS) {
@@ -310,7 +291,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  static int ov5640_set_ctrl_gain(struct ov5640_dev *sensor, bool auto_gain)
  {
  	struct ov5640_ctrls *ctrls = &sensor->ctrls;
-@@ -2685,6 +2899,32 @@ static int ov5640_set_ctrl_vflip(struct ov5640_dev *sensor, int value)
+@@ -2614,6 +2809,32 @@ static int ov5640_set_ctrl_vflip(struct ov5640_dev *sensor, int value)
  			      (BIT(2) | BIT(1)) : 0);
  }
  
@@ -343,7 +324,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  static int ov5640_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
  {
  	struct v4l2_subdev *sd = ctrl_to_sd(ctrl);
-@@ -2706,6 +2946,12 @@ static int ov5640_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
+@@ -2635,6 +2856,12 @@ static int ov5640_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
  			return val;
  		sensor->ctrls.exposure->val = val;
  		break;
@@ -356,7 +337,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  	}
  
  	return 0;
-@@ -2737,6 +2983,18 @@ static int ov5640_s_ctrl(struct v4l2_ctrl *ctrl)
+@@ -2666,6 +2893,18 @@ static int ov5640_s_ctrl(struct v4l2_ctrl *ctrl)
  	case V4L2_CID_AUTO_WHITE_BALANCE:
  		ret = ov5640_set_ctrl_white_balance(sensor, ctrl->val);
  		break;
@@ -375,7 +356,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  	case V4L2_CID_HUE:
  		ret = ov5640_set_ctrl_hue(sensor, ctrl->val);
  		break;
-@@ -2809,6 +3067,20 @@ static int ov5640_init_controls(struct ov5640_dev *sensor)
+@@ -2738,6 +2977,20 @@ static int ov5640_init_controls(struct ov5640_dev *sensor)
  	ctrls->gain = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_GAIN,
  					0, 1023, 1, 0);
  
@@ -396,7 +377,7 @@ index 7764e755bd05..65ab69f6b71a 100644
  	ctrls->saturation = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_SATURATION,
  					      0, 255, 1, 64);
  	ctrls->hue = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_HUE,
-@@ -2842,6 +3114,7 @@ static int ov5640_init_controls(struct ov5640_dev *sensor)
+@@ -2771,6 +3024,7 @@ static int ov5640_init_controls(struct ov5640_dev *sensor)
  	v4l2_ctrl_auto_cluster(3, &ctrls->auto_wb, 0, false);
  	v4l2_ctrl_auto_cluster(2, &ctrls->auto_gain, 0, true);
  	v4l2_ctrl_auto_cluster(2, &ctrls->auto_exp, 1, true);
@@ -405,5 +386,5 @@ index 7764e755bd05..65ab69f6b71a 100644
  	sensor->sd.ctrl_handler = hdl;
  	return 0;
 -- 
-2.30.1
+GitLab
 
