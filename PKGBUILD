@@ -7,14 +7,15 @@ _commit="945310589fa62cb25f54e885c4c3f43b31fa009b"
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
-pkgver=5.11.2
-pkgrel=2
+pkgver=5.11.3
+pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
+        '5.11.3.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -25,10 +26,15 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         'enable-jack-detection-pinetab.patch'
         'pinetab-bluetooth.patch'
         'pinetab-accelerometer.patch'
-        'camera-autofocus.patch'
-        'media-ov5640-dont-break-when-firmware-for-autofocus-isnt-loaded.patch'
         'dts-pinephone-drop-modem-power-node.patch'
         'dts-headphone-jack-detection.patch'
+        'media-ov5640-Implement-autofocus.patch'
+        '0011-dts-pinetab-hardcode-mmc-numbers.patch'
+        '0002-dts-add-pinetab-dev-old-display-panel.patch'
+        '0001-arm64-dts-allwinner-pinephone-stop-LEDs-on-suspend.patch'
+        '0010-dts-pinephone-Add-pine64-pinephone-to-compat-list.patch'
+        '0012-pinephone-fix-pogopin-i2c.patch'   
+        '0013-WoWLAN-support-for-the-PinePhone.patch'     
         '0107-quirk-kernel-org-bug-210681-firmware_rome_error.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
@@ -46,6 +52,7 @@ source=("linux-$_commit.tar.gz::${url}/archive/${_commit}.tar.gz"
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
 sha256sums=('9ab31995d696af04353b65f6167f4e2927661d74f51f1505cd3f6c4ecbcc9daa'
+            'b5dc3154ee9fd346666ade08ca7cd2ff4e07686481b43b5e194d4eb9bccd344c'
             '13edfb7d3527b006ed4371a7dc0ed99c5fad425fa9cb321e7ffad387b678b735'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -56,10 +63,15 @@ sha256sums=('9ab31995d696af04353b65f6167f4e2927661d74f51f1505cd3f6c4ecbcc9daa'
             '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
             'dc4048106a515b3deb43c9de47674d0c99028336723e71d5df2a3897352df524'
             '0e6453bf258c34349e5cc76811d804392aaa1ef9230c343719879682aaff7515'
-            '6270614e74fddfb272ec079379c9a0dfcc1204e2179505ed562672b75ee26249'
-            '94fa9a857169538c795a327f0b1d540e236cc89ec5a152b8760e157495a6d3fc'
             '1dc72e9f4c74447555053d0146edc58076067827a7bbe67da5e979d493168484'
             '96a115db9a059211fdabce2cdfa2c781c3e2b0aea4ed58041481409ef0b33a95'
+            'f88f9837ccbd76cae6d116f4dce40f9977e894241a668a7c0e3938021e9cc6f2'
+            'd65be979c90421fe1d581d8bd7c01402bf5716b7529fee7fe0700afc4e71a268'
+            '76992bf8389815c24bbf48aa5566b3961a6d5c43e08e94ee25bc6a6eb811cba6'
+            'dcd0fbd70a58172c15711aedc668d4ffc40f2fa416813391e3a21e8dc71b025a'
+            'b90daf53d3fb49cd0565aa0486013419549f7ef2ce2375b586e399b78742a262'
+            'ab405428cc7ead1793441f6a9840f4b82121e3397f9595119c4554479a86716e'
+            '94c3e24fcd5d9df1c0b7b57d581bd690a7e642fa80dbaeeaf2abe3bb40d1245e'
             '5e804e1f241ce542f3f0e83d274ede6aa4b0539e510fb9376f8106e8732ce69b'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
