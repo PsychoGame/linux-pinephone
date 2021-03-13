@@ -8,7 +8,7 @@ _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.11.6
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
@@ -61,7 +61,7 @@ sha256sums=('e70512c0a115418c2de0a65e8587ba82fe2579bc4186e35f6f5e31d8fd08518c'
             'dc4048106a515b3deb43c9de47674d0c99028336723e71d5df2a3897352df524'
             '0e6453bf258c34349e5cc76811d804392aaa1ef9230c343719879682aaff7515'
             '1dc72e9f4c74447555053d0146edc58076067827a7bbe67da5e979d493168484'
-            '96a115db9a059211fdabce2cdfa2c781c3e2b0aea4ed58041481409ef0b33a95'
+            'd621f8d68ed16bf60c2c8e4ac40f3721055828f4f34f649225d00a464a449df3'
             'f88f9837ccbd76cae6d116f4dce40f9977e894241a668a7c0e3938021e9cc6f2'
             'd65be979c90421fe1d581d8bd7c01402bf5716b7529fee7fe0700afc4e71a268'
             '76992bf8389815c24bbf48aa5566b3961a6d5c43e08e94ee25bc6a6eb811cba6'
