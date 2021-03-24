@@ -3,12 +3,12 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_tag="orange-pi-5.11-20210322-0151"
+_tag="orange-pi-5.11-20210324-2213"
 _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
-pkgver=5.11.8
-pkgrel=2
+pkgver=5.11.9
+pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
@@ -50,7 +50,7 @@ source=("linux-$_tag.tar.gz::${url}/archive/${_tag}.tar.gz"
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('0bca56d5a63b46e6b8105c22f356577272444944d0f0cafb2d3c8b0a3d1b395e'
+sha256sums=('32adeb536c37a3962690b59ede6747e8d45967601e14429b3c2e1a855ec8ce61'
             '26fca0e8a34f51e403a58b4ff4b7b231952cb0ce04296fa864d46c05d486ac0b'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
