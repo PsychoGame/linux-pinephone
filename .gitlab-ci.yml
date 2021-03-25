@@ -23,6 +23,7 @@ build-package:
   tags:
     # change the tag to your gitlab-runner
     - bigbuilds
+    - philm
   script:
     # build pkg via chrootbuild
     - export PKG=${PWD##*/}
