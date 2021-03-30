@@ -14,7 +14,7 @@ url="https://github.com/megous/linux/releases/tag/$_tag"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
-source=("linux-$_tag.tar.gz::${url}/archive/${_tag}.tar.gz"
+source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar.gz"
         'config'
         'linux.preset'
         '60-linux.hook'
