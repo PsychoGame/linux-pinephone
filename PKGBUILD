@@ -8,7 +8,7 @@ _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.11.10
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://github.com/megous/linux"
 license=('GPL2')
@@ -53,7 +53,7 @@ source=("linux-$_tag.tar.gz::${url}/archive/${_tag}.tar.gz"
         '0012-bootsplash.patch')
 sha256sums=('32adeb536c37a3962690b59ede6747e8d45967601e14429b3c2e1a855ec8ce61'
             '2e25dffb0e60d8008ff22728755569e4b3e05409e463e28076385322856e3e40'
-            '26fca0e8a34f51e403a58b4ff4b7b231952cb0ce04296fa864d46c05d486ac0b'
+            '4e1f50fdf6d86cb484b1d89dc9f22ff035976237eda3b45b338e2a32ca39a489'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
