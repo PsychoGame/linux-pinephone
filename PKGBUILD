@@ -8,7 +8,7 @@ _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.11.12
-pkgrel=2
+pkgrel=3
 arch=('aarch64')
 url="https://github.com/megous/linux/releases/tag/$_tag"
 license=('GPL2')
@@ -39,6 +39,8 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
         '0003-revert-fbcon-remove-soft-scrollback-code.patch'
+        '0001-drivers-usb-add-reset_resume-callback.patch'
+        '0002-Revert-usb-quirks-Add-USB_QUIRK_RESET-for-Quectel-EG.patch'
         '0001-bootsplash.patch'
         '0002-bootsplash.patch'
         '0003-bootsplash.patch'
@@ -51,6 +53,7 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
+
 sha256sums=('c6e9cba113fc9d778b58a81c04d4f44e240a8fb23f3435c9cba8cdcd84362060'
             'b577e841e0a904c133ecbf97703bbe9c5bc51d151a10efe0ef7bbef3d22db186'
             '4e1f50fdf6d86cb484b1d89dc9f22ff035976237eda3b45b338e2a32ca39a489'
@@ -76,6 +79,8 @@ sha256sums=('c6e9cba113fc9d778b58a81c04d4f44e240a8fb23f3435c9cba8cdcd84362060'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '37a221c12b40122167b0a30b5a9f2fc99e2aeb94e4db58a719c2b30171c5aeb5'
+            '706ac2e0b9b4ea5496bcbaac60c63ad7ffcce685a43cfae0bc40ed15521dc137'
+            '1865d5bcd97126ecf465f00ab3625ba79521f1803e454e3cdd3518cf22ecb1d5'
             '59202940d4f12bad23c194a530edc900e066866c9945e39748484a6545af96de'
             'e096b127a5208f56d368d2cb938933454d7200d70c86b763aa22c38e0ddb8717'
             '8c1c880f2caa9c7ae43281a35410203887ea8eae750fe8d360d0c8bf80fcc6e0'
@@ -88,7 +93,6 @@ sha256sums=('c6e9cba113fc9d778b58a81c04d4f44e240a8fb23f3435c9cba8cdcd84362060'
             'e9f22cbb542591087d2d66dc6dc912b1434330ba3cd13d2df741d869a2c31e89'
             '27471eee564ca3149dd271b0817719b5565a9594dc4d884fe3dc51a5f03832bc'
             '60e295601e4fb33d9bf65f198c54c7eb07c0d1e91e2ad1e0dd6cd6e142cb266d')
-
 prepare() {
   cd "${srcdir}/${_srcname}"
 
