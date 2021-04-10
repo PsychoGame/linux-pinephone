@@ -8,7 +8,7 @@ _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.11.12
-pkgrel=3
+pkgrel=4
 arch=('aarch64')
 url="https://github.com/megous/linux/releases/tag/$_tag"
 license=('GPL2')
@@ -43,6 +43,7 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         '0002-Revert-usb-quirks-Add-USB_QUIRK_RESET-for-Quectel-EG.patch'
         '0001-net-usb-qmi_wwan-set-the-DTR-when-resuming.patch'
         '0002-net-usb-qmi_wwan-apply-SET_DTR-quirk-to-the-BM818.patch'
+        '0005-net-usb-qmi_wwan-set-dtr-only-when-using-reset_resum.patch'
         '0001-bootsplash.patch'
         '0002-bootsplash.patch'
         '0003-bootsplash.patch'
@@ -84,6 +85,7 @@ sha256sums=('c6e9cba113fc9d778b58a81c04d4f44e240a8fb23f3435c9cba8cdcd84362060'
             '1865d5bcd97126ecf465f00ab3625ba79521f1803e454e3cdd3518cf22ecb1d5'
             '86abcb800d9ea799952a22a85a1debb6ab9f9d22cac86734fdad50387415bf27'
             '3724e61f0157916a56f119e60165470e79f60c94d9d22c8507e4f6073af54f18'
+            'ce917e8b8d22409f4e71e45b0fba4d3bf1c1718f5df51b447022f107bbfb8492'
             '59202940d4f12bad23c194a530edc900e066866c9945e39748484a6545af96de'
             'e096b127a5208f56d368d2cb938933454d7200d70c86b763aa22c38e0ddb8717'
             '8c1c880f2caa9c7ae43281a35410203887ea8eae750fe8d360d0c8bf80fcc6e0'
