@@ -1,0 +1,29 @@
+From 794971e30507ab434261d2eee843c3ddfac87cf8 Mon Sep 17 00:00:00 2001
+From: Bhushan Shah <bshah@kde.org>
+Date: Sat, 10 Apr 2021 09:05:42 +0530
+Subject: [PATCH 2/2] net: usb: qmi_wwan: apply SET_DTR quirk to the BM818
+
+BroadMobi BM818 is QualComm MDM9607 based device, similar to Quectel
+EC25, this also needs the DTR quirk
+
+Signed-off-by: Bhushan Shah <bshah@kde.org>
+---
+ drivers/net/usb/qmi_wwan.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/usb/qmi_wwan.c b/drivers/net/usb/qmi_wwan.c
+index cd46dac3903f4..ac4c52958441a 100644
+--- a/drivers/net/usb/qmi_wwan.c
++++ b/drivers/net/usb/qmi_wwan.c
+@@ -1256,7 +1256,7 @@ static const struct usb_device_id products[] = {
+ 	{QMI_FIXED_INTF(0x2001, 0x7e3d, 4)},	/* D-Link DWM-222 A2 */
+ 	{QMI_FIXED_INTF(0x2020, 0x2031, 4)},	/* Olicard 600 */
+ 	{QMI_FIXED_INTF(0x2020, 0x2033, 4)},	/* BroadMobi BM806U */
+-	{QMI_FIXED_INTF(0x2020, 0x2060, 4)},	/* BroadMobi BM818 */
++	{QMI_QUIRK_SET_DTR(0x2020, 0x2060, 4)},	/* BroadMobi BM818 */
+ 	{QMI_FIXED_INTF(0x0f3d, 0x68a2, 8)},    /* Sierra Wireless MC7700 */
+ 	{QMI_FIXED_INTF(0x114f, 0x68a2, 8)},    /* Sierra Wireless MC7750 */
+ 	{QMI_FIXED_INTF(0x1199, 0x68a2, 8)},	/* Sierra Wireless MC7710 in QMI mode */
+-- 
+2.31.1
+
