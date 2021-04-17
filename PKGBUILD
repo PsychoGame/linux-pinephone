@@ -55,7 +55,7 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
 sha256sums=('628f5a7e4fb1b78b52e473d5324faecda488771b59687fa463d76671ddd3fc4a'
             '34d2fe9a9ad9cf06489b78d522f9a42d0e0bddc2ee67bae5b3954de9e048ad1d'
             '038ed74dfe2153e148be2f0c4b3cfafe0b417b7db08f8343bf18e1ad7f2099af'
-            '26fca0e8a34f51e403a58b4ff4b7b231952cb0ce04296fa864d46c05d486ac0b'
+            '3eecee51623be3c3ff0c9bee00e5ab6e9234c11b4c05c3934d57628375e4a0dc'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
