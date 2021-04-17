@@ -8,15 +8,15 @@ _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="Aarch64 PinePhone kernel"
 pkgver=5.11.15
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://github.com/megous/linux/releases/tag/$_tag"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar.gz"
-        'patch-5.11.13-14'
-        'patch-5.11.14-15'
+        '5.11.13-14.patch'
+        '5.11.14-15.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
