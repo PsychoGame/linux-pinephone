@@ -5,7 +5,7 @@ index 1c555456b..05fab5d79 100644
 @@ -78,6 +78,7 @@ green {
  		};
  
- 		red {
+ 		led-2 {
 +			linux,default-trigger = "panic";
  			function = LED_FUNCTION_INDICATOR;
  			color = <LED_COLOR_ID_RED>;
