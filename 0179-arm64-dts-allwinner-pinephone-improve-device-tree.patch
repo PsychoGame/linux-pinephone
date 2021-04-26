@@ -71,7 +71,7 @@ diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm6
 index c55709197804..441358592072 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-@@ -80,21 +80,21 @@ blue {
+@@ -219,21 +219,21 @@
  			function = LED_FUNCTION_INDICATOR;
  			color = <LED_COLOR_ID_BLUE>;
  			gpios = <&pio 3 20 GPIO_ACTIVE_HIGH>; /* PD20 */
@@ -79,7 +79,7 @@ index c55709197804..441358592072 100644
 +			max-brightness = <1>;
  		};
  
- 		green {
+ 		led-1 {
  			function = LED_FUNCTION_INDICATOR;
  			color = <LED_COLOR_ID_GREEN>;
  			gpios = <&pio 3 18 GPIO_ACTIVE_HIGH>; /* PD18 */
@@ -87,7 +87,7 @@ index c55709197804..441358592072 100644
 +			max-brightness = <1>;
  		};
  
- 		red {
+ 		led-2 {
  			function = LED_FUNCTION_INDICATOR;
  			color = <LED_COLOR_ID_RED>;
  			gpios = <&pio 3 19 GPIO_ACTIVE_HIGH>; /* PD19 */
@@ -96,7 +96,7 @@ index c55709197804..441358592072 100644
  		};
  	};
  
-@@ -198,6 +198,14 @@ &cpu3 {
+@@ -380,6 +380,14 @@
  	cpu-supply = <&reg_dcdc2>;
  };
  
@@ -111,7 +111,7 @@ index c55709197804..441358592072 100644
  &csi {
  	pinctrl-0 = <&csi_pins>, <&csi_mclk_pin>;
  	status = "okay";
-@@ -671,11 +679,11 @@ &sound {
+@@ -816,11 +824,11 @@
  	simple-audio-card,aux-devs = <&codec_analog>, <&speaker_amp>;
  	simple-audio-card,widgets = "Microphone", "Headset Microphone",
  				    "Microphone", "Internal Microphone",
