@@ -11222,22 +11222,6 @@ index 813670ed9577b..79deed8adceab 100644
  	    rkisp1_rsz_get_yuv_mbus_info(format->code))
  		src_fmt->code = format->code;
  
-diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_video.c b/drivers/media/platform/sunxi/sun6i-csi/sun6i_video.c
-index b55de9ab64d8b..3181d0781b613 100644
---- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_video.c
-+++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_video.c
-@@ -151,8 +151,10 @@ static int sun6i_video_start_streaming(struct vb2_queue *vq, unsigned int count)
- 	}
- 
- 	subdev = sun6i_video_remote_subdev(video, NULL);
--	if (!subdev)
-+	if (!subdev) {
-+		ret = -EINVAL;
- 		goto stop_media_pipeline;
-+	}
- 
- 	config.pixelformat = video->fmt.fmt.pix.pixelformat;
- 	config.code = video->mbus_code;
 diff --git a/drivers/media/test-drivers/vivid/vivid-vid-out.c b/drivers/media/test-drivers/vivid/vivid-vid-out.c
 index ac1e981e83420..9f731f085179e 100644
 --- a/drivers/media/test-drivers/vivid/vivid-vid-out.c
