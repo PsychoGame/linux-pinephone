@@ -3,19 +3,18 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_tag="orange-pi-5.12-20210519-1214"
+_tag="orange-pi-5.12-20210522-1320"
 _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="PinePhone kernel (Megi)"
 pkgver=5.12.6
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://github.com/megous/linux/releases/tag/$_tag"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar.gz"
-        '5.12.5-6.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -34,6 +33,7 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         '0178-sun8i-codec-fix-headphone-jack-pin-name.patch'
         '0179-arm64-dts-allwinner-pinephone-improve-device-tree.patch'
         'panic-led.patch'
+        'improve-jack-button-handling-and-mic.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
         '0003-revert-fbcon-remove-soft-scrollback-code.patch'
@@ -49,9 +49,8 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('12b04f448805e84d8904d376363c631c9034bc99ee047e4153b2a7bdf10ff5c7'
-            '331db4f55168afe29fcf9eef9b989fd46aadd58f2d423c9fd610889f8b2f9308'
-            '876abc775f66250a6d19e1fe973a50034bf9402f6be1decc17e1a78923115f7f'
+sha256sums=('9c297dab6733102d74349b29efb179877cfe53fdbf09133ee6e0184bb477e61b'
+            'c0a4f075a75092f27fd709b8e0b6c0aaf1022203a096b8728512be3c481f5cf9'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
@@ -69,6 +68,7 @@ sha256sums=('12b04f448805e84d8904d376363c631c9034bc99ee047e4153b2a7bdf10ff5c7'
             'dbea232e6c0632353df252a8a8444a4e9dcf268d9bac4061e21514c307e335c4'
             '1d9c4cf8d647c1fb4fcc1f701456f0b714040634dd7ae4725cdfb3292f315090'
             '29ab48c207ccf90262596397026d3a20c7b7032833b17d6c77d7226db57e6914'
+            '17f199a42a7f128d03422607fbfbafe959dde38844be52372030b150396aa747'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '1f18c5c10a3c63e41ecd05ad34cd9f6653ba96e9f1049ce2b7bb6da2578ae710'
