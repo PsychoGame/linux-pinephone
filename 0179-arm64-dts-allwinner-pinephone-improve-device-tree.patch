@@ -111,20 +111,6 @@ index c55709197804..441358592072 100644
  &csi {
  	pinctrl-0 = <&csi_pins>, <&csi_mclk_pin>;
  	status = "okay";
-@@ -816,11 +824,11 @@
- 	simple-audio-card,aux-devs = <&codec_analog>, <&speaker_amp>;
- 	simple-audio-card,widgets = "Microphone", "Headset Microphone",
- 				    "Microphone", "Internal Microphone",
--				    "Headphone", "Headphone Jack",
-+				    "Headphone", "Headphone",
- 				    "Speaker", "Internal Earpiece",
- 				    "Speaker", "Internal Speaker";
- 	simple-audio-card,routing =
--			"Headphone Jack", "HP",
-+			"Headphone", "HP",
- 			"Internal Earpiece", "EARPIECE",
- 			"Internal Speaker", "Speaker Amp OUTL",
- 			"Internal Speaker", "Speaker Amp OUTR",
 -- 
 2.30.0
 
