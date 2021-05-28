@@ -3,19 +3,19 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_tag="orange-pi-5.12-20210522-1320"
+_tag="orange-pi-5.12-20210527-2200"
 _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="PinePhone kernel (Megi)"
-pkgver=5.12.7
-pkgrel=2
+pkgver=5.12.8
+pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux/releases/tag/$_tag"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'uboot-tools' 'dtc')
 options=('!strip')
 source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar.gz"
-        '5.12.6-7.patch'
+        '5.12.7-8.patch'
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -32,7 +32,6 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         '0177-leds-gpio-make-max_brightness-configurable.patch'
         '0179-arm64-dts-allwinner-pinephone-improve-device-tree.patch'
         'panic-led.patch'
-        'improve-jack-button-handling-and-mic.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
         '0003-revert-fbcon-remove-soft-scrollback-code.patch'
@@ -48,8 +47,8 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('9c297dab6733102d74349b29efb179877cfe53fdbf09133ee6e0184bb477e61b'
-            'dfd8234a502a006c60411cc7794120fe3b2216823a75b6acf1d29841c7678de5'
+sha256sums=('5c25809ee6663d6ce57e682ea6ab359a8c487d0b7a27c493f827c6feb82ef7de'
+            '22eef39497dc4d848b06d7d2b5f305e6782c19c9d1ffa17d8d2b59a2b10f0bef'
             'c0a4f075a75092f27fd709b8e0b6c0aaf1022203a096b8728512be3c481f5cf9'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
@@ -66,7 +65,6 @@ sha256sums=('9c297dab6733102d74349b29efb179877cfe53fdbf09133ee6e0184bb477e61b'
             'f34385a6e064583cfdf6fe660b2acf45828a009c047c933a8e7a6c5147ba9df7'
             'beaf2aecb932f45b29b93decee53556dc2b98c8c2e5a879c5daefcfc630bccb4'
             '29ab48c207ccf90262596397026d3a20c7b7032833b17d6c77d7226db57e6914'
-            '17f199a42a7f128d03422607fbfbafe959dde38844be52372030b150396aa747'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
             '1f18c5c10a3c63e41ecd05ad34cd9f6653ba96e9f1049ce2b7bb6da2578ae710'
