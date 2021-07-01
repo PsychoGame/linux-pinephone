@@ -7,7 +7,7 @@ _tag="orange-pi-5.12-20210630-0000"
 _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="PinePhone kernel (Megi)"
-pkgver=5.12.13
+pkgver=5.12.14
 pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux/releases/tag/$_tag"
@@ -19,6 +19,7 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
+        '5.12.13-14.patch'
         'enable-hdmi-output-pinetab.patch'
         'enable-jack-detection-pinetab.patch'
         'pinetab-bluetooth.patch'
@@ -51,6 +52,7 @@ sha256sums=('377f2bdd37960150b93f47f6f4f87c65b6deffa92f407f6f893daee676b38a77'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
+            'b07bc9dfe854d27217e882ce4af87cd5e8f84c911bd6357a2cc5032bb7e73603'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
             '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
             'dc4048106a515b3deb43c9de47674d0c99028336723e71d5df2a3897352df524'
