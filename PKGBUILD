@@ -3,7 +3,7 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_tag="orange-pi-5.12-20210630-0000"
+_tag="orange-pi-5.13-20210629-2359"
 _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="PinePhone kernel (Megi)"
@@ -28,7 +28,6 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         '0011-dts-pinetab-hardcode-mmc-numbers.patch'    
         '0107-quirk-kernel-org-bug-210681-firmware_rome_error.patch'
         '0177-leds-gpio-make-max_brightness-configurable.patch'
-        '0179-arm64-dts-allwinner-pinephone-improve-device-tree.patch'
         'panic-led.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
@@ -59,7 +58,6 @@ sha256sums=('1797a334ac8e90e3e1bfe6ea07f8ac9b02c587eba11dd53100a0b6318de7a8b2'
             'd65be979c90421fe1d581d8bd7c01402bf5716b7529fee7fe0700afc4e71a268'
             '5e804e1f241ce542f3f0e83d274ede6aa4b0539e510fb9376f8106e8732ce69b'
             'f34385a6e064583cfdf6fe660b2acf45828a009c047c933a8e7a6c5147ba9df7'
-            'beaf2aecb932f45b29b93decee53556dc2b98c8c2e5a879c5daefcfc630bccb4'
             '29ab48c207ccf90262596397026d3a20c7b7032833b17d6c77d7226db57e6914'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
