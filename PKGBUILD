@@ -3,11 +3,11 @@
 # Maintainer: Philip Müller <philm@manjaro.org>
 
 pkgbase=linux-pinephone
-_tag="orange-pi-5.12-20210630-0000"
+_tag="orange-pi-5.13-20210629-2359"
 _srcname=linux-${_tag}
 _kernelname=${pkgbase#linux}
 _desc="PinePhone kernel (Megi)"
-pkgver=5.12.14
+pkgver=5.13
 pkgrel=1
 arch=('aarch64')
 url="https://github.com/megous/linux/releases/tag/$_tag"
@@ -19,18 +19,15 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
-        '5.12.13-14.patch'
         'enable-hdmi-output-pinetab.patch'
         'enable-jack-detection-pinetab.patch'
         'pinetab-bluetooth.patch'
         'pinetab-accelerometer.patch'
         'dts-pinephone-drop-modem-power-node.patch'
         'media-ov5640-Implement-autofocus.patch'
-        '0011-dts-pinetab-hardcode-mmc-numbers.patch'
-        '0012-pinephone-fix-pogopin-i2c.patch'      
+        '0011-dts-pinetab-hardcode-mmc-numbers.patch'    
         '0107-quirk-kernel-org-bug-210681-firmware_rome_error.patch'
         '0177-leds-gpio-make-max_brightness-configurable.patch'
-        '0179-arm64-dts-allwinner-pinephone-improve-device-tree.patch'
         'panic-led.patch'
         '0001-revert-fbcon-remove-now-unusued-softback_lines-cursor-argument.patch'
         '0002-revert-fbcon-remove-no-op-fbcon_set_origin.patch'
@@ -47,12 +44,11 @@ source=("linux-$_tag.tar.gz::https://github.com/megous/linux/archive/${_tag}.tar
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
         '0012-bootsplash.patch')
-sha256sums=('377f2bdd37960150b93f47f6f4f87c65b6deffa92f407f6f893daee676b38a77'
+sha256sums=('1797a334ac8e90e3e1bfe6ea07f8ac9b02c587eba11dd53100a0b6318de7a8b2'
             '43da8448baec782e881f7f02a1e5af7d5190967b396482c27dc6e91f1474ef8d'
             'f704a0e790a310f88b76bf5ae7200ef6f47fd6c68c0d2447de0f121cfc93c5ad'
             'ae2e95db94ef7176207c690224169594d49445e04249d2499e9d2fbc117a0b21'
             '71df1b18a3885b151a3b9d926a91936da2acc90d5e27f1ad326745779cd3759d'
-            'b07bc9dfe854d27217e882ce4af87cd5e8f84c911bd6357a2cc5032bb7e73603'
             'a3b98f1c514dfbc563691e502ceeb05f734aadb7ea3af0e0d2866cb515548529'
             '1ef1c44720798f5e7dcd57ec066e11cb0d4c4db673efcb74b2239534add9564c'
             'dc4048106a515b3deb43c9de47674d0c99028336723e71d5df2a3897352df524'
@@ -60,10 +56,8 @@ sha256sums=('377f2bdd37960150b93f47f6f4f87c65b6deffa92f407f6f893daee676b38a77'
             '1dc72e9f4c74447555053d0146edc58076067827a7bbe67da5e979d493168484'
             'f88f9837ccbd76cae6d116f4dce40f9977e894241a668a7c0e3938021e9cc6f2'
             'd65be979c90421fe1d581d8bd7c01402bf5716b7529fee7fe0700afc4e71a268'
-            'ab405428cc7ead1793441f6a9840f4b82121e3397f9595119c4554479a86716e'
             '5e804e1f241ce542f3f0e83d274ede6aa4b0539e510fb9376f8106e8732ce69b'
             'f34385a6e064583cfdf6fe660b2acf45828a009c047c933a8e7a6c5147ba9df7'
-            'beaf2aecb932f45b29b93decee53556dc2b98c8c2e5a879c5daefcfc630bccb4'
             '29ab48c207ccf90262596397026d3a20c7b7032833b17d6c77d7226db57e6914'
             'ddf1e7fc55cc6fe81ecfcac84112e573ca95713c027bc84d69cf880812fd6ff3'
             '94a8538251ad148f1025cc3de446ce64f73dc32b01815426fb159c722e8fa5bc'
